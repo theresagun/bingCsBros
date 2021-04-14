@@ -16,6 +16,7 @@
 		344AE1B32624927E00EC6BAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344AE1B22624927E00EC6BAC /* Assets.xcassets */; };
 		344AE1BE2624927E00EC6BAC /* bingCsBrosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1BD2624927E00EC6BAC /* bingCsBrosTests.swift */; };
 		344AE1C92624927E00EC6BAC /* bingCsBrosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1C82624927E00EC6BAC /* bingCsBrosUITests.swift */; };
+		347CB750262736D200E9C464 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CB74F262736D200E9C464 /* Character.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		344AE1C42624927E00EC6BAC /* bingCsBrosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bingCsBrosUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		344AE1C82624927E00EC6BAC /* bingCsBrosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bingCsBrosUITests.swift; sourceTree = "<group>"; };
 		344AE1CA2624927E00EC6BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		347CB74F262736D200E9C464 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				344AE1AB2624927D00EC6BAC /* GameScene.swift */,
 				344AE1AD2624927D00EC6BAC /* GameViewController.swift */,
 				344AE1AF2624927D00EC6BAC /* Main.storyboard */,
+				347CB74F262736D200E9C464 /* Character.swift */,
 				344AE1B22624927E00EC6BAC /* Assets.xcassets */,
 				344AE1B42624927E00EC6BAC /* Info.plist */,
 			);
@@ -265,6 +268,7 @@
 				344AE1AC2624927D00EC6BAC /* GameScene.swift in Sources */,
 				344AE1AE2624927D00EC6BAC /* GameViewController.swift in Sources */,
 				344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */,
+				347CB750262736D200E9C464 /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
