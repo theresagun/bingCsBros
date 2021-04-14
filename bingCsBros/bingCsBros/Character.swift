@@ -21,4 +21,12 @@ class Character: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    func moveForward(){
+        self.position.x += CGFloat(1)
+    }
+
+    func moveBackward(){
+        self.position.x -= CGFloat(1)
+    }
 }
