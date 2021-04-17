@@ -17,6 +17,10 @@
 		344AE1BE2624927E00EC6BAC /* bingCsBrosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1BD2624927E00EC6BAC /* bingCsBrosTests.swift */; };
 		344AE1C92624927E00EC6BAC /* bingCsBrosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1C82624927E00EC6BAC /* bingCsBrosUITests.swift */; };
 		347CB750262736D200E9C464 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CB74F262736D200E9C464 /* Character.swift */; };
+		44198F3B262B855200C9D26C /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44198F3A262B855200C9D26C /* Enemy.swift */; };
+		44198F48262B886400C9D26C /* bartle.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 44198F47262B886400C9D26C /* bartle.jpeg */; };
+		44198F57262B8DE400C9D26C /* jazzmans.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 44198F55262B8DE300C9D26C /* jazzmans.jpeg */; };
+		44198F58262B8DE400C9D26C /* marketplace.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 44198F56262B8DE400C9D26C /* marketplace.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		344AE1C82624927E00EC6BAC /* bingCsBrosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bingCsBrosUITests.swift; sourceTree = "<group>"; };
 		344AE1CA2624927E00EC6BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		347CB74F262736D200E9C464 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		44198F3A262B855200C9D26C /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		44198F47262B886400C9D26C /* bartle.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = bartle.jpeg; path = Assets.xcassets/bartle.jpeg; sourceTree = "<group>"; };
+		44198F55262B8DE300C9D26C /* jazzmans.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = jazzmans.jpeg; path = Assets.xcassets/jazzmans.jpeg; sourceTree = "<group>"; };
+		44198F56262B8DE400C9D26C /* marketplace.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = marketplace.jpeg; path = Assets.xcassets/marketplace.jpeg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +111,7 @@
 		344AE1A42624927D00EC6BAC /* bingCsBros */ = {
 			isa = PBXGroup;
 			children = (
+				44198F3A262B855200C9D26C /* Enemy.swift */,
 				344AE1A52624927D00EC6BAC /* AppDelegate.swift */,
 				344AE1A72624927D00EC6BAC /* GameScene.sks */,
 				344AE1A92624927D00EC6BAC /* Actions.sks */,
@@ -111,6 +120,9 @@
 				344AE1AF2624927D00EC6BAC /* Main.storyboard */,
 				347CB74F262736D200E9C464 /* Character.swift */,
 				344AE1B22624927E00EC6BAC /* Assets.xcassets */,
+				44198F55262B8DE300C9D26C /* jazzmans.jpeg */,
+				44198F56262B8DE400C9D26C /* marketplace.jpeg */,
+				44198F47262B886400C9D26C /* bartle.jpeg */,
 				344AE1B42624927E00EC6BAC /* Info.plist */,
 			);
 			path = bingCsBros;
@@ -238,8 +250,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				344AE1B12624927D00EC6BAC /* Main.storyboard in Resources */,
+				44198F58262B8DE400C9D26C /* marketplace.jpeg in Resources */,
+				44198F57262B8DE400C9D26C /* jazzmans.jpeg in Resources */,
 				344AE1A82624927D00EC6BAC /* GameScene.sks in Resources */,
 				344AE1B32624927E00EC6BAC /* Assets.xcassets in Resources */,
+				44198F48262B886400C9D26C /* bartle.jpeg in Resources */,
 				344AE1AA2624927D00EC6BAC /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				344AE1AC2624927D00EC6BAC /* GameScene.swift in Sources */,
+				44198F3B262B855200C9D26C /* Enemy.swift in Sources */,
 				344AE1AE2624927D00EC6BAC /* GameViewController.swift in Sources */,
 				344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */,
 				347CB750262736D200E9C464 /* Character.swift in Sources */,
@@ -439,6 +455,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NA2Q6XHTH2;
 				INFOPLIST_FILE = bingCsBros/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,6 +475,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NA2Q6XHTH2;
 				INFOPLIST_FILE = bingCsBros/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
