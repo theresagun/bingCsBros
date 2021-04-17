@@ -15,7 +15,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        createBackground()
         //needed for gravity/jumping
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5) //can change dy if we want
@@ -26,6 +25,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //testing jumping, we can remove this later 
         let mainChar = Character(x: 0, y: 0, img: "someName")
         addChild(mainChar)
+        createBackground()
+
     }
     
     
