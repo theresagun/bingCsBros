@@ -14,6 +14,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var spinnyNode : SKShapeNode?
     
     override func didMove(to view: SKView) {
+        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        createBackground()
         //needed for gravity/jumping
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5) //can change dy if we want
@@ -58,5 +60,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        moveBackground()
     }
+    
+    func createBackground(){
+        for i in 0...3 {
+            let background = SKSpriteNode(imageNamed: "bartle.jpeg")
+            background.name = "Background"
+            background.size = CGSize(width: (self.scene?.size.width)!, height: (self.scene?.size.height)!)
+            background.anchorPoint =  CGPoint(x: 0.5, y: 0.5)
+           background.position = CGPoint(x: CGFloat(i)*background.size.width, y: 0)
+
+            self.addChild((background))
+        }
+    }
+    
+    func moveBackground(){
+        self.enumerateChildNodes(withName: "Background", using: ({
+            (node,error) in
+
+            node.position.x -= 2
+
+            if node.position.x < -((self.scene?.size.width)!){
+                node.position.x += (self.scene?.size.width)! * 3
+            }
+        }) )
+    }
+
+    
+    
+    
+    
 }
+
+
+
+    
+
+    
+
+
+    
