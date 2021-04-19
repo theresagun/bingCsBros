@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
         //testing jumping, we can remove this later 
         let mainChar = Character(x: 0, y: 0, img: "someName")
+        mainChar.zPosition = 1
         addChild(mainChar)
         createBackground()
         
@@ -117,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             background.size = CGSize(width: (self.scene?.size.width)!, height: (self.scene?.size.height)!)
             background.anchorPoint =  CGPoint(x: 0.5, y: 0.5)
            background.position = CGPoint(x: CGFloat(i)*background.size.width, y: 0)
-
+            background.zPosition = 0
             self.addChild((background))
         }
     }

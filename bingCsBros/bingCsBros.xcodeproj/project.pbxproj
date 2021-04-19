@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34030565262DC7B800BFBA5C /* bartle.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 34030562262DC7B800BFBA5C /* bartle.jpeg */; };
+		34030566262DC7B800BFBA5C /* marketplace.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 34030563262DC7B800BFBA5C /* marketplace.jpeg */; };
+		34030567262DC7B800BFBA5C /* jazzmans.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 34030564262DC7B800BFBA5C /* jazzmans.jpeg */; };
 		344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1A52624927D00EC6BAC /* AppDelegate.swift */; };
 		344AE1A82624927D00EC6BAC /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 344AE1A72624927D00EC6BAC /* GameScene.sks */; };
 		344AE1AA2624927D00EC6BAC /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 344AE1A92624927D00EC6BAC /* Actions.sks */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		34030562262DC7B800BFBA5C /* bartle.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bartle.jpeg; sourceTree = "<group>"; };
+		34030563262DC7B800BFBA5C /* marketplace.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = marketplace.jpeg; sourceTree = "<group>"; };
+		34030564262DC7B800BFBA5C /* jazzmans.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jazzmans.jpeg; sourceTree = "<group>"; };
 		344AE1A22624927D00EC6BAC /* bingCsBros.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bingCsBros.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		344AE1A52624927D00EC6BAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		344AE1A72624927D00EC6BAC /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -117,6 +123,9 @@
 				79B3E47426293A4B00EE2316 /* Obstacles.swift */,
 				347CB74F262736D200E9C464 /* Character.swift */,
 				344AE1B22624927E00EC6BAC /* Assets.xcassets */,
+				34030562262DC7B800BFBA5C /* bartle.jpeg */,
+				34030564262DC7B800BFBA5C /* jazzmans.jpeg */,
+				34030563262DC7B800BFBA5C /* marketplace.jpeg */,
 				344AE1B42624927E00EC6BAC /* Info.plist */,
 			);
 			path = bingCsBros;
@@ -246,6 +255,9 @@
 				344AE1B12624927D00EC6BAC /* Main.storyboard in Resources */,
 				344AE1A82624927D00EC6BAC /* GameScene.sks in Resources */,
 				344AE1B32624927E00EC6BAC /* Assets.xcassets in Resources */,
+				34030567262DC7B800BFBA5C /* jazzmans.jpeg in Resources */,
+				34030566262DC7B800BFBA5C /* marketplace.jpeg in Resources */,
+				34030565262DC7B800BFBA5C /* bartle.jpeg in Resources */,
 				344AE1AA2624927D00EC6BAC /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
