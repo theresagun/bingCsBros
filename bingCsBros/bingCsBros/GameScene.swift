@@ -13,6 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
     
+    var good:Bool = false
+
+    
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         //needed for gravity/jumping
@@ -26,12 +29,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let mainChar = Character(x: 0, y: 0, img: "someName")
         addChild(mainChar)
         createBackground()
+        
 
     }
     
     
     func touchDown(atPoint pos : CGPoint) {
-        (self.children[0] as! Character).jump()
+        //jump
+        if(pos.x > -180 && pos.x < 180){
+            NSLog("I'm a dinosaur and I like to jump.")
+            (self.children[0] as! Character).jump()
+
+            
+        }
+        //right
+        if(pos.x < -180){
+            NSLog("I'm a dinosaur and I like to run right.")
+            (self.children[0] as! Character).moveBackward()
+            callBack_backward()
+
+            
+        }
+        //left
+        if(pos.x > 180){
+            NSLog("I'm a dinosaur and I like to run left.")
+            callBack_forward()
+        }
+    }
+    
+    func callBack_forward() {
+        (self.children[0] as! Character).moveForward()
+        if(good == true){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
+                self.callBack_forward()
+            }
+        }
+    }
+    func callBack_backward() {
+        (self.children[0] as! Character).moveBackward()
+        if(good == true){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.005) {
+                self.callBack_backward()
+            }
+        }
     }
     
     func touchMoved(toPoint pos : CGPoint) {
@@ -43,7 +83,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
+        good = true
+        for t in touches {
+            self.touchDown(atPoint: t.location(in: self))
+        }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -51,7 +94,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
+        good = false
+        for t in touches {
+            self.touchUp(atPoint: t.location(in: self))
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

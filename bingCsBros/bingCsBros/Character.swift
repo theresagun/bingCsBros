@@ -30,11 +30,11 @@ class Character: SKSpriteNode {
     }
     
     func moveForward(){
-        self.position.x += CGFloat(1)
+        self.position.x += CGFloat(2)
     }
 
     func moveBackward(){
-        self.position.x -= CGFloat(1)
+        self.position.x -= CGFloat(2)
     }
     
     func jump(){
