@@ -135,10 +135,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }) )
     }
 
-    
-    
-    
-    
+    func makePlatform(x:Int, y:Int, numBoxes:Int, numQBoxes:Int) {
+        let img_width = 40
+        for i in 0...numBoxes {
+            let x_coord = x + (i*img_width)
+            let platBox = PlatformBox(x:x_coord,y:y,isQ:false)
+            self.addChild(platBox)
+        }
+        let q_x_coord = x + (numBoxes*img_width)
+        let questionBox = PlatformBox(x:q_x_coord,y:y,isQ:true)
+        self.addChild(questionBox)
+    }
 }
 
 

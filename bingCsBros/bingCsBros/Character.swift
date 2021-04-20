@@ -10,12 +10,16 @@ import SpriteKit
 
 class Character: SKSpriteNode {
     var lives: Int!
+    var hasImmunity: Bool!
+    var charSpeed: CGFloat!
     
     init(x:Int, y:Int, img:String) {
         let texture = SKTexture(imageNamed: img)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = CGPoint(x: x, y: y)
         self.lives = 3
+        self.hasImmunity = false
+        self.charSpeed = 2.0
         
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
         //character stays upright
@@ -30,11 +34,11 @@ class Character: SKSpriteNode {
     }
     
     func moveForward(){
-        self.position.x += CGFloat(2)
+        self.position.x += charSpeed
     }
 
     func moveBackward(){
-        self.position.x -= CGFloat(2)
+        self.position.x -= charSpeed
     }
     
     func jump(){
