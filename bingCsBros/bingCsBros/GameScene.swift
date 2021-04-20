@@ -10,28 +10,24 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
     var good:Bool = false
-
     
     override func didMove(to view: SKView) {
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         //needed for gravity/jumping
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5) //can change dy if we want
         //so nodes don't fall off the screen
-        let physicsBody = SKPhysicsBody (edgeLoopFrom: self.frame)
-        self.physicsBody = physicsBody
-
+        //this is hard coded for an iphone 11 in landscape mode with camera on right
+        self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: self.frame.minX, y: self.frame.midY-165), size: self.frame.size))
+        //for future reference:
+        //bottom left corner CGPoint(x: self.frame.minX, y: self.frame.midY-165)
+        //top right corner CGPoint(x: self.frame.maxX, y: self.frame.midY+165)
+        
         //testing jumping, we can remove this later 
         let mainChar = Character(x: 0, y: 0, img: "someName")
         mainChar.zPosition = 1
         addChild(mainChar)
         createBackground()
-        
-
     }
     
     
@@ -147,12 +143,3 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(questionBox)
     }
 }
-
-
-
-    
-
-    
-
-
-    
