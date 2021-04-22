@@ -11,6 +11,10 @@ import GameplayKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var good:Bool = false
+    var startOfLevel = DispatchTime.now()
+    var level = 1 //make this persistent
+    var intervalsUsed : [Int] = []
+    var notOnScreen : [String] = []
     
     override func didMove(to view: SKView) {
         //needed for gravity/jumping
@@ -104,8 +108,213 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if(level == 1 ){
+            //print("level == 1")
+            //declare all enemies/obstacles
+            let enemy1 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "steven", typeOfEnemy: "goomba", id: 1)
+            
+            let obstacle1 = Obstacles(x: Int(self.frame.maxX) - 200, y: 0, img: "desk", typeOfObstacles: "idk?", id: 2)
+            
+            let enemy2 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "madden", typeOfEnemy: "goomba", id: 3)
+            
+            let platform1 : [SKNode] = makePlatform(x: 100 , y: 0, numBoxes: 5, numQBoxes: 1)
+            
+            let obstacle2 = Obstacles(x: Int(self.frame.maxX) - 200, y: 0, img: "chair", typeOfObstacles: "idk?", id: 4)
+            
+            let enemy3 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "steven", typeOfEnemy: "goomba", id: 5)
+            
+            let platform2 : [SKNode] = makePlatform(x: Int(self.frame.minX) + 60 , y: 100, numBoxes: 5, numQBoxes: 0)
+            
+            let platform3 : [SKNode] = makePlatform(x: 0 , y: 0, numBoxes: 5, numQBoxes: 1)
+            
+            let obstacle3 = Obstacles(x: Int(self.frame.maxX) - 200, y: 0, img: "desk", typeOfObstacles: "idk?", id: 6)
+            
+            let platform4 : [SKNode] = makePlatform(x: 0 , y: 0, numBoxes: 3, numQBoxes: 1)
+            
+            let enemy4 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "madden", typeOfEnemy: "goomba", id: 7)
+            
+            let platform5 : [SKNode] = makePlatform(x: Int(self.frame.minX) + 60 , y: 100, numBoxes: 4, numQBoxes: 0)
+            
+            let platform6 : [SKNode] = makePlatform(x: 0 , y: -100, numBoxes: 4, numQBoxes: 0)
+            
+            
+            let now = DispatchTime.now()
+            let nanoTime = now.uptimeNanoseconds - startOfLevel.uptimeNanoseconds // Difference in nano seconds
+            let timeInterval = Double(nanoTime) / 1_000_000_000
+            if(Int(timeInterval) == 3 && intervalsUsed.contains(Int(timeInterval)) == false ){
+                intervalsUsed.append(Int(timeInterval))
+                enemy1.zPosition = 1
+                addChild(enemy1)
+                //moveEnemiesBackAndForth()
+            }
+            if(Int(timeInterval) == 6 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                obstacle1.zPosition = 1
+                addChild(obstacle1)
+               
+                
+            }
+            if(Int(timeInterval) == 9 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                self.notOnScreen.append(enemy1.description)
+                removeEnemy()
+                addChild(enemy2)
+            }
+            
+            if(Int(timeInterval) == 12 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                self.notOnScreen.append(obstacle1.description)
+                removeObstacle()
+               // platform1 = makePlatform(x: 0 , y: 0, numBoxes: 5, numQBoxes: 1)
+                for node in platform1{
+                    addChild(node)
+                }
+            }
+            
+            if(Int(timeInterval) == 15 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                self.notOnScreen.append(enemy2.description)
+                removeEnemy()
+                addChild(obstacle2)
+            }
+            
+            if(Int(timeInterval) == 20 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                //add enemy and 2 platforms
+                //TODO: add collectible on top of platform
+                for node in platform1{
+                    print("adding to not on screen list")
+                    self.notOnScreen.append(node.description)
+                }
+                removePlatform()
+                
+                self.notOnScreen.append(obstacle2.description)
+                removeObstacle()
+                
+                addChild(enemy3)
+                for node in platform2{
+                    addChild(node)
+                }
+                
+                for node in platform3{
+                    addChild(node)
+                }
+            }
+            
+            if(Int(timeInterval) == 25 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                for node in platform2{
+                    self.notOnScreen.append(node.description)
+                }
+                removePlatform()
+                addChild(obstacle3)
+            }
+            
+            if(Int(timeInterval) == 30 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                for node in platform3{
+                    self.notOnScreen.append(node.description)
+                }
+                removePlatform()
+                self.notOnScreen.append(enemy3.description)
+                removeEnemy()
+                for node in platform4{
+                    addChild(node)
+                }
+                
+            }
+            
+            if(Int(timeInterval) == 35 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                self.notOnScreen.append(obstacle3.description)
+                removeObstacle()
+                addChild(enemy4)
+            }
+            
+            if(Int(timeInterval) == 40 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                for node in platform4{
+                    self.notOnScreen.append(node.description)
+                }
+                removePlatform()
+                for node in platform5{
+                    addChild(node)
+                }
+                for node in platform6{
+                    addChild(node)
+                }
+                //TODO: add collectible on top of platform 5
+            }
+            
+            
+            if(Int(timeInterval) == 45 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                for node in platform5{
+                    self.notOnScreen.append(node.description)
+                }
+                removePlatform()
+                self.notOnScreen.append(enemy4.description)
+                removeEnemy()
+                //TODO: add ending flag
+            }
+            
+            
+            if(Int(timeInterval) == 50 && intervalsUsed.contains(Int(timeInterval)) == false){
+                intervalsUsed.append(Int(timeInterval))
+                for node in platform6{
+                    self.notOnScreen.append(node.description)
+                }
+                removePlatform()
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+        
+            
+        
+        } //end of if level  == 1
         moveBackground()
     }
+    
+    
+    func removeEnemy(){
+        self.enumerateChildNodes(withName: "Enemy", using: ({
+            (node,error) in
+            if(self.notOnScreen.contains(node.description)){
+                self.notOnScreen.remove(at: self.notOnScreen.index(of: node.description)!)
+                node.removeFromParent()
+            }
+        }) )
+    }
+    
+    func removeObstacle(){
+        self.enumerateChildNodes(withName: "Obstacle", using: ({
+            (node,error) in
+            if(self.notOnScreen.contains(node.description)){
+                self.notOnScreen.remove(at: self.notOnScreen.index(of: node.description)!)
+                node.removeFromParent()
+            }
+        }) )
+    }
+    
+    func removePlatform(){
+        self.enumerateChildNodes(withName: "Platform", using: ({
+            (node,error) in
+            print("remove platform")
+            print("list: " + self.notOnScreen.description)
+            if(self.notOnScreen.contains(node.description)){
+                print("removing box")
+                self.notOnScreen.remove(at: self.notOnScreen.index(of: node.description)!)
+                node.removeFromParent()
+            }
+        }) )
+    }
+    
     
     func createBackground(){
         for i in 0...3 {
@@ -131,15 +340,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }) )
     }
 
-    func makePlatform(x:Int, y:Int, numBoxes:Int, numQBoxes:Int) {
-        let img_width = 40
+    func makePlatform(x:Int, y:Int, numBoxes:Int, numQBoxes:Int) -> [SKNode] {
+        let img_width = 20
+        var platformBoxes : [SKNode] = []
         for i in 0...numBoxes {
             let x_coord = x + (i*img_width)
+            print("x-coord: " + String(x_coord))
             let platBox = PlatformBox(x:x_coord,y:y,isQ:false)
-            self.addChild(platBox)
+            //self.addChild(platBox)
+            platformBoxes.append(platBox)
         }
         let q_x_coord = x + (numBoxes*img_width)
         let questionBox = PlatformBox(x:q_x_coord,y:y,isQ:true)
-        self.addChild(questionBox)
+        //self.addChild(questionBox)
+        platformBoxes.append(questionBox)
+        print("PLATFORM BOXES: " + platformBoxes.description)
+        return platformBoxes
     }
 }

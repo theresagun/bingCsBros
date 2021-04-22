@@ -15,6 +15,7 @@ class PowerItem: SKSpriteNode {
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = CGPoint(x: x, y: y)
         self.power = powerType
+        self.zPosition = 1
     }
     
     required init?(coder aDecoder: NSCoder) {

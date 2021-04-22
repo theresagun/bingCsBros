@@ -22,6 +22,10 @@ class PlatformBox: SKSpriteNode {
         let texture = SKTexture(imageNamed: img)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = CGPoint(x: x, y: y)
+        self.size.height = 20
+        self.size.width = 20
+        self.zPosition = 1
+        self.name = "Platform"
     }
     
     required init?(coder aDecoder: NSCoder) {

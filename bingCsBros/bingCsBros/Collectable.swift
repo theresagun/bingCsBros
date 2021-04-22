@@ -15,6 +15,7 @@ class Collectable: SKSpriteNode {
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = CGPoint(x: x, y: y)
         self.isCollected = false
+        self.zPosition = 1
     }
     
     required init?(coder aDecoder: NSCoder) {
