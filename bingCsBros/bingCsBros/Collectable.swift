@@ -16,6 +16,9 @@ class Collectable: SKSpriteNode {
         self.position = CGPoint(x: x, y: y)
         self.isCollected = false
         self.zPosition = 1
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody?.isDynamic = false
+        self.name = "collectible"
     }
     
     required init?(coder aDecoder: NSCoder) {

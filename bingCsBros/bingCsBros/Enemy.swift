@@ -11,6 +11,7 @@ import SpriteKit
 class Enemy: SKSpriteNode {
     var typeOfEnemy: String!
     var id: Int!
+    var lastIntersectionTime: Double?
     
     init(x:Int, y:Int, img:String, typeOfEnemy: String, id: Int) {
         let texture = SKTexture(imageNamed: img)
@@ -22,6 +23,8 @@ class Enemy: SKSpriteNode {
         self.name = "Enemy"
         self.id = id
         self.zPosition = 1
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody?.isDynamic = false
     }
     
     required init?(coder aDecoder: NSCoder) {

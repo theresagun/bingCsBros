@@ -14,10 +14,10 @@ class PlatformBox: SKSpriteNode {
     init(x:Int, y:Int, isQ:Bool) {
         isQuestion = isQ
         if(isQuestion == true) {
-            img = "RegularBox"
+            img = "stickFigure"
         }
         else {
-            img = "QuestionBox"
+            img = "stickFigure"
         }
         let texture = SKTexture(imageNamed: img)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
@@ -26,6 +26,8 @@ class PlatformBox: SKSpriteNode {
         self.size.width = 20
         self.zPosition = 1
         self.name = "Platform"
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody?.isDynamic = false
     }
     
     required init?(coder aDecoder: NSCoder) {

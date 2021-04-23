@@ -16,6 +16,9 @@ class PowerItem: SKSpriteNode {
         self.position = CGPoint(x: x, y: y)
         self.power = powerType
         self.zPosition = 1
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody?.isDynamic = false
+        self.name = "powerItem"
     }
     
     required init?(coder aDecoder: NSCoder) {

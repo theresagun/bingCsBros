@@ -15,6 +15,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var level = 1 //make this persistent
     var intervalsUsed : [Int] = []
     var notOnScreen : [String] = []
+    var collected : [SKNode] = []
+    
+    enum collisionTypes: UInt32 {
+        case player = 1
+        case enemy = 2
+        case obstacle = 4
+        case power = 8
+        case collectible = 16
+        case platform = 32
+    }
     
     override func didMove(to view: SKView) {
         //needed for gravity/jumping
@@ -30,22 +40,59 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //testing jumping, we can remove this later 
         let mainChar = Character(x: 0, y: 0, img: "someName")
         mainChar.zPosition = 1
+        mainChar.name = "mainChar"
+        
+        //what type of object is this
+        mainChar.physicsBody?.categoryBitMask = collisionTypes.player.rawValue
+        //what do we want to be notified of colliding with
+        mainChar.physicsBody?.contactTestBitMask = collisionTypes.enemy.rawValue | collisionTypes.power.rawValue | collisionTypes.collectible.rawValue
+        //what do we not want to walk through
+        mainChar.physicsBody?.collisionBitMask = collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue
+        
         addChild(mainChar)
         createBackground()
     }
     
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        print("in did begin")
+
+        if nodeA.name == "mainChar" {
+            playerCollided(with: nodeB)
+        } else if nodeB.name == "mainChar" {
+            playerCollided(with: nodeA)
+        }
+    }
+    
+    func playerCollided(with node: SKNode){
+        if node.name == "Enemy"{
+            (self.childNode(withName: "mainChar") as! Character).lives -= 1
+            print((self.childNode(withName: "mainChar") as! Character).lives)
+        }
+        else if node.name == "powerItem"{
+            (node as! PowerItem).characterEffect(currChar: (self.childNode(withName: "mainChar") as! Character))
+            node.removeFromParent()
+        }
+        else if node.name == "collectible"{
+            (node as! Collectable).isCollected = true
+            self.collected.append(node) //keep track of ones we collected
+            node.removeFromParent() //remove from screen
+        }
+        
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         //jump
         if(pos.x > -180 && pos.x < 180){
-            NSLog("I'm a dinosaur and I like to jump.")
+           // NSLog("I'm a dinosaur and I like to jump.")
             (self.children[0] as! Character).jump()
 
             
         }
         //right
         if(pos.x < -180){
-            NSLog("I'm a dinosaur and I like to run right.")
+          //  NSLog("I'm a dinosaur and I like to run right.")
             (self.children[0] as! Character).moveBackward()
             callBack_backward()
 
@@ -53,7 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         //left
         if(pos.x > 180){
-            NSLog("I'm a dinosaur and I like to run left.")
+          //  NSLog("I'm a dinosaur and I like to run left.")
             callBack_forward()
         }
     }
@@ -108,30 +155,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        var timeInterval = 0.0
         if(level == 1 ){
             //print("level == 1")
             //declare all enemies/obstacles
             let enemy1 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "steven", typeOfEnemy: "goomba", id: 1)
+            enemy1.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy1.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy1.physicsBody?.collisionBitMask = 0
             
             let obstacle1 = Obstacles(x: Int(self.frame.maxX) - 200, y: 0, img: "desk", typeOfObstacles: "idk?", id: 2)
-            
+            obstacle1.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+            obstacle1.physicsBody?.isDynamic = false
+
             let enemy2 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "madden", typeOfEnemy: "goomba", id: 3)
-            
+            enemy2.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy2.physicsBody?.collisionBitMask = 0
+
             let platform1 : [SKNode] = makePlatform(x: 100 , y: 0, numBoxes: 5, numQBoxes: 1)
             
             let obstacle2 = Obstacles(x: Int(self.frame.maxX) - 200, y: 0, img: "chair", typeOfObstacles: "idk?", id: 4)
+            obstacle2.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+            obstacle2.physicsBody?.isDynamic = false
             
             let enemy3 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "steven", typeOfEnemy: "goomba", id: 5)
+            enemy3.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy3.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy3.physicsBody?.collisionBitMask = 0
             
             let platform2 : [SKNode] = makePlatform(x: Int(self.frame.minX) + 60 , y: 100, numBoxes: 5, numQBoxes: 0)
             
             let platform3 : [SKNode] = makePlatform(x: 0 , y: 0, numBoxes: 5, numQBoxes: 1)
             
             let obstacle3 = Obstacles(x: Int(self.frame.maxX) - 200, y: 0, img: "desk", typeOfObstacles: "idk?", id: 6)
+            obstacle3.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+            obstacle3.physicsBody?.isDynamic = false
             
             let platform4 : [SKNode] = makePlatform(x: 0 , y: 0, numBoxes: 3, numQBoxes: 1)
             
             let enemy4 = Enemy(x: Int(self.frame.maxX) - 250, y: 0, img: "madden", typeOfEnemy: "goomba", id: 7)
+            enemy4.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy4.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy4.physicsBody?.collisionBitMask = 0
             
             let platform5 : [SKNode] = makePlatform(x: Int(self.frame.minX) + 60 , y: 100, numBoxes: 4, numQBoxes: 0)
             
@@ -140,7 +206,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let now = DispatchTime.now()
             let nanoTime = now.uptimeNanoseconds - startOfLevel.uptimeNanoseconds // Difference in nano seconds
-            let timeInterval = Double(nanoTime) / 1_000_000_000
+            timeInterval = Double(nanoTime) / 1_000_000_000
             if(Int(timeInterval) == 3 && intervalsUsed.contains(Int(timeInterval)) == false ){
                 intervalsUsed.append(Int(timeInterval))
                 enemy1.zPosition = 1
@@ -183,7 +249,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 //add enemy and 2 platforms
                 //TODO: add collectible on top of platform
                 for node in platform1{
-                    print("adding to not on screen list")
+                   // print("adding to not on screen list")
                     self.notOnScreen.append(node.description)
                 }
                 removePlatform()
@@ -281,7 +347,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveBackground()
     }
     
-    
     func removeEnemy(){
         self.enumerateChildNodes(withName: "Enemy", using: ({
             (node,error) in
@@ -305,10 +370,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func removePlatform(){
         self.enumerateChildNodes(withName: "Platform", using: ({
             (node,error) in
-            print("remove platform")
-            print("list: " + self.notOnScreen.description)
+        //    print("remove platform")
+         //   print("list: " + self.notOnScreen.description)
             if(self.notOnScreen.contains(node.description)){
-                print("removing box")
+         //       print("removing box")
                 self.notOnScreen.remove(at: self.notOnScreen.index(of: node.description)!)
                 node.removeFromParent()
             }
@@ -345,7 +410,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var platformBoxes : [SKNode] = []
         for i in 0...numBoxes {
             let x_coord = x + (i*img_width)
-            print("x-coord: " + String(x_coord))
+           // print("x-coord: " + String(x_coord))
             let platBox = PlatformBox(x:x_coord,y:y,isQ:false)
             //self.addChild(platBox)
             platformBoxes.append(platBox)
@@ -354,7 +419,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let questionBox = PlatformBox(x:q_x_coord,y:y,isQ:true)
         //self.addChild(questionBox)
         platformBoxes.append(questionBox)
-        print("PLATFORM BOXES: " + platformBoxes.description)
+       // print("PLATFORM BOXES: " + platformBoxes.description)
         return platformBoxes
     }
 }

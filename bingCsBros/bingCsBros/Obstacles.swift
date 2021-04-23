@@ -23,6 +23,8 @@ class Obstacles: SKSpriteNode {
         self.name = "Obstacle"
         self.id = id
         self.zPosition = 1
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody?.isDynamic = false
     }
     
     required init?(coder aDecoder: NSCoder) {
