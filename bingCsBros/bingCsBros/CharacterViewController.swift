@@ -40,11 +40,12 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
     func prepCamera(){
 
         let vc = UIImagePickerController()
-        vc.sourceType = .camera
-        vc.allowsEditing = true
-        vc.delegate = self
-//        vc.modalPresentationStyle = UIModalPresentationStyle.currentContext
-        present(vc, animated: true)
+        if(UIImagePickerController.isSourceTypeAvailable(.camera)){
+            vc.sourceType = .camera
+            vc.allowsEditing = true
+            vc.delegate = self
+            present(vc, animated: true)
+        }
     }
         
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
