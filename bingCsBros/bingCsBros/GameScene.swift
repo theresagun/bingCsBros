@@ -16,7 +16,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var intervalsUsed : [Int] = []
     var notOnScreen : [String] = []
     var collected : [SKNode] = []
+    var score = 0
+    var livesHelper: Int!
     
+    var scoreLabel: SKLabelNode!
+    var healthLabel: SKLabelNode!
+        
     enum collisionTypes: UInt32 {
         case player = 1
         case enemy = 2
@@ -49,14 +54,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //what do we not want to walk through
         mainChar.physicsBody?.collisionBitMask = collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue
         
+        self.livesHelper = mainChar.lives
         addChild(mainChar)
         createBackground()
+        setUpLabels()
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) { //called when beginning of a collision is detected
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
-        print("in did begin")
 
         if nodeA.name == "mainChar" {
             playerCollided(with: nodeB)
@@ -68,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func playerCollided(with node: SKNode){
         if node.name == "Enemy"{
             (self.childNode(withName: "mainChar") as! Character).lives -= 1
-            print((self.childNode(withName: "mainChar") as! Character).lives)
+            self.livesHelper -= 1
         }
         else if node.name == "powerItem"{
             (node as! PowerItem).characterEffect(currChar: (self.childNode(withName: "mainChar") as! Character))
@@ -80,6 +86,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent() //remove from screen
         }
         
+    }
+    
+    func setUpLabels(){
+        let viewTop = CGPoint(x:scene!.view!.center.x,y:scene!.view!.frame.minY)
+        let sceneTop = scene!.view!.convert(viewTop, to:scene!)
+        let nodeTop = scene!.convert(sceneTop,to:GameScene())
+        //create score label
+          self.scoreLabel = SKLabelNode(fontNamed: "Courier")
+          self.scoreLabel.name = "scoreLabel"
+          self.scoreLabel.fontSize = 20
+          self.scoreLabel.fontColor = SKColor.white
+        self.scoreLabel.text = String(format: "Score: %04u", self.score)
+          self.scoreLabel.position = CGPoint(x: nodeTop.x + 200, y: nodeTop.y-50)
+        addChild(scoreLabel)
+
+        //same for health TODO change health to hearts not %
+          self.healthLabel = SKLabelNode(fontNamed: "Courier")
+          self.healthLabel.name = "healthLabel"
+          self.healthLabel.fontSize = 20
+          self.healthLabel.fontColor = SKColor.white
+        self.healthLabel.text = String(format: "Health: 3")
+          self.healthLabel.position = CGPoint(x: nodeTop.x - 200, y: nodeTop.y-50)
+        addChild(healthLabel)
+    }
+    
+    func updateLabels(){
+        self.scoreLabel.text = String(format: "Score: %04u", self.score)
+        self.healthLabel.text = String(format: "Health: %04u", self.livesHelper)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -344,7 +378,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         
         } //end of if level  == 1
+        self.score = Int(timeInterval)
         moveBackground()
+        updateLabels()
     }
     
     func removeEnemy(){
