@@ -24,9 +24,17 @@ class PowerItem: SKSpriteNode {
     func characterEffect(currChar:Character) {
         if(power == "Immunity") {
             currChar.hasImmunity = true
+            let start = Date()
+            while(start.timeIntervalSinceNow < 5) {
+            }
+            currChar.hasImmunity = false
         }
         else if (power == "SpeedBoost") {
             currChar.charSpeed = 4.0
+            let start = Date()
+            while(start.timeIntervalSinceNow < 5) {
+            }
+            currChar.charSpeed = 2.0
         }
     }
 }
