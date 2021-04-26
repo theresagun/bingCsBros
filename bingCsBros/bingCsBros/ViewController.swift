@@ -9,10 +9,18 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var mytableview : UITableView!
+    @IBOutlet var tableView : UITableView!
+    
+    let scores = [
+        "19",
+        "20",
+        "3"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -29,3 +37,20 @@ class ViewController: UIViewController {
     */
 
 }
+
+extension ViewController: UITableViewDelegate {
+    
+}
+extension ViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return scores.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = scores[indexPath.row]
+        return cell
+    }
+
+}
+

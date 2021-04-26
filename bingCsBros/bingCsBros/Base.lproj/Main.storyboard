@@ -26,7 +26,7 @@
         <!--View Controller-->
         <scene sceneID="ea7-B0-AXC">
             <objects>
-                <viewController id="GSC-Jc-0uh" sceneMemberID="viewController">
+                <viewController id="GSC-Jc-0uh" customClass="ViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fDy-Uo-4Qa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +41,16 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3o-ee-8Dr">
                                 <rect key="frame" x="87" y="156" width="240" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="N94-JK-KSu">
+                                        <rect key="frame" x="0.0" y="28" width="240" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N94-JK-KSu" id="9dp-TA-6tP">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JtQ-tF-2vM"/>
@@ -52,6 +62,9 @@
                             <constraint firstItem="JtQ-tF-2vM" firstAttribute="trailing" secondItem="w3o-ee-8Dr" secondAttribute="trailing" constant="87" id="yJe-7m-eiX"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="w3o-ee-8Dr" id="Qsu-hj-nhW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmb-uQ-22M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
