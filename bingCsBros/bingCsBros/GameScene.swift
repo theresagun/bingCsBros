@@ -65,8 +65,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeB = contact.bodyB.node else { return }
 
         if nodeA.name == "mainChar" {
+            if(nodeB.name == "collectible"){ //happened here twice
+                print("node A is main char")
+            }
             playerCollided(with: nodeB)
         } else if nodeB.name == "mainChar" {
+            if(nodeA.name == "collectible"){
+                print("node B is main char")
+            }
             playerCollided(with: nodeA)
         }
     }
@@ -81,6 +87,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent()
         }
         else if node.name == "collectible"{
+            print("     deleting collectible!!!")
             (node as! Collectable).isCollected = true
             self.collected.append(node) //keep track of ones we collected
             node.removeFromParent() //remove from screen
@@ -193,39 +200,87 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(level == 1 ){
             //declare all enemies/obstacles
             let enemy1 = Enemy(x: Int(self.frame.maxY) - 450 , y: (Int(self.frame.minX) / 4) - 30 , img: "steven", typeOfEnemy: "goomba", id: 1)
+            enemy1.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy1.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy1.physicsBody?.collisionBitMask = 0
             
             let obstacle1 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "desk", typeOfObstacles: "idk?", id: 2)
+            obstacle1.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
             
             let enemy2 = Enemy(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "madden", typeOfEnemy: "goomba", id: 3)
+            enemy2.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy2.physicsBody?.collisionBitMask = 0
             
             let platform1 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 5, numQBoxes: 1)
-            
+            for box in platform1{
+                box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+                box.physicsBody?.contactTestBitMask = 0
+                box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            }
             
             let obstacle2 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "chair", typeOfObstacles: "idk?", id: 4)
-            
+            obstacle2.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+
             let enemy3 = Enemy(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "steven", typeOfEnemy: "goomba", id: 5)
+            enemy3.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy3.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy3.physicsBody?.collisionBitMask = 0
             
             let platform2 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 5, numQBoxes: 0)  //come out before 3
+            for box in platform2{
+                box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+                box.physicsBody?.contactTestBitMask = 0
+                box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            }
             
             let platform3 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 150 , y: Int(self.frame.maxX / 2) - 100, numBoxes: 5, numQBoxes: 1)
+            for box in platform3{
+                box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+                box.physicsBody?.contactTestBitMask = 0
+                box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            }
             
             let collectible1 = Collectable(x: Int(self.frame.maxY) - 105, y: Int(self.frame.maxX / 2) - 100 + 25, img: "stackOverflowLogo")
-            
+            collectible1.physicsBody?.categoryBitMask = collisionTypes.collectible.rawValue
+            collectible1.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            collectible1.physicsBody?.collisionBitMask = 0
             
             let obstacle3 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "desk", typeOfObstacles: "idk?", id: 6)
-            
+            obstacle3.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+
             
             let platform4 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 3, numQBoxes: 1)
-            
+            for box in platform4{
+                box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+                box.physicsBody?.contactTestBitMask = 0
+                box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            }
             
             let enemy4 = Enemy(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "madden", typeOfEnemy: "goomba", id: 7)
+            enemy4.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+            enemy4.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            enemy4.physicsBody?.collisionBitMask = 0
             
             let platform5 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: Int(self.frame.maxX / 2) - 100, numBoxes: 4, numQBoxes: 0) //come out ebfore 6
+            for box in platform5{
+                box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+                box.physicsBody?.contactTestBitMask = 0
+                box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            }
             
             let platform6 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 150 , y: 0, numBoxes: 4, numQBoxes: 0)
+            for box in platform6{
+                box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+                box.physicsBody?.contactTestBitMask = 0
+                box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            }
             
             let collectible2 = Collectable(x: Int(self.frame.maxY) - 255, y: Int(self.frame.maxX / 2) - 100 + 25, img: "stackOverflowLogo")
-            
+            collectible2.physicsBody?.categoryBitMask = collisionTypes.collectible.rawValue
+            collectible2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            collectible2.physicsBody?.collisionBitMask = 0
+
             //todo:
             //add collectibles
             

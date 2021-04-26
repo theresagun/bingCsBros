@@ -27,6 +27,7 @@ class Character: SKSpriteNode {
         //next two are needed to make gravity work
         self.physicsBody?.isDynamic = true
         self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.friction = 1
         self.zPosition = 1
     }
     

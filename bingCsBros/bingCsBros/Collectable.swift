@@ -12,12 +12,14 @@ class Collectable: SKSpriteNode {
     var isCollected: Bool!
     init(x:Int, y:Int, img:String) {
         let texture = SKTexture(imageNamed: img)
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        
+        super.init(texture: texture, color: UIColor.clear, size: CGSize(width: 40, height: 30))
         self.position = CGPoint(x: x, y: y)
         self.isCollected = false
         self.zPosition = 1
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
-        self.physicsBody?.isDynamic = false
+        self.physicsBody?.isDynamic = true
+        self.physicsBody?.affectedByGravity = false
         self.name = "collectible"
         self.size.width = 40
         self.size.height = 30
