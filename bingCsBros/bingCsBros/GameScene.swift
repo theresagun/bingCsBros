@@ -280,7 +280,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             collectible2.physicsBody?.categoryBitMask = collisionTypes.collectible.rawValue
             collectible2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
             collectible2.physicsBody?.collisionBitMask = 0
-
+            
+            
+            let endFlag = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "endFlag", typeOfObstacles: "idk?", id: 8)
+            
+            endFlag.name = "flag"
+            endFlag.size.width = 300
+            endFlag.size.height = self.frame.maxY / 4
             //todo:
             //add collectibles
             
@@ -420,8 +426,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.notOnScreen.append(node.description)
                 }
                 removePlatform()
+                //add flag
+                addChild(endFlag)
                 
             }
+            
+            
             
             
             //when show end of level: self.notOnScreen.removeAll()
@@ -519,6 +529,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }) )
         
         self.enumerateChildNodes(withName: "collectible", using: ({
+            (node,error) in
+            node.position.x -= 1
+        }) )
+        
+        self.enumerateChildNodes(withName: "flag", using: ({
             (node,error) in
             node.position.x -= 1
         }) )
