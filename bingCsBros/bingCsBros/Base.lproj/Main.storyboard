@@ -32,20 +32,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="leaderboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbi-VV-jhb">
-                                <rect key="frame" x="186" y="278" width="92" height="21"/>
+                                <rect key="frame" x="161" y="70" width="92" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3o-ee-8Dr">
+                                <rect key="frame" x="87" y="156" width="240" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JtQ-tF-2vM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="w3o-ee-8Dr" firstAttribute="leading" secondItem="JtQ-tF-2vM" secondAttribute="leading" constant="87" id="TsN-TR-bqJ"/>
+                            <constraint firstItem="w3o-ee-8Dr" firstAttribute="top" secondItem="JtQ-tF-2vM" secondAttribute="top" constant="156" id="YBL-gE-j5H"/>
+                            <constraint firstItem="JtQ-tF-2vM" firstAttribute="bottom" secondItem="w3o-ee-8Dr" secondAttribute="bottom" constant="524" id="YzQ-AW-X0l"/>
+                            <constraint firstItem="JtQ-tF-2vM" firstAttribute="trailing" secondItem="w3o-ee-8Dr" secondAttribute="trailing" constant="87" id="yJe-7m-eiX"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zmb-uQ-22M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-584" y="717"/>
+            <point key="canvasLocation" x="-370" y="717"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="JD3-Na-vR7">
