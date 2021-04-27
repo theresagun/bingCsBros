@@ -25,6 +25,7 @@
 		344AE1BE2624927E00EC6BAC /* bingCsBrosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1BD2624927E00EC6BAC /* bingCsBrosTests.swift */; };
 		344AE1C92624927E00EC6BAC /* bingCsBrosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344AE1C82624927E00EC6BAC /* bingCsBrosUITests.swift */; };
 		347CB750262736D200E9C464 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CB74F262736D200E9C464 /* Character.swift */; };
+		34B881FF2638626300391271 /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B881FE2638626300391271 /* WinViewController.swift */; };
 		796E9BDF263662A30084A130 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E9BDE263662A30084A130 /* ViewController.swift */; };
 		79B3E4702629390100EE2316 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E46F2629390100EE2316 /* Enemy.swift */; };
 		79B3E47526293A4B00EE2316 /* Obstacles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E47426293A4B00EE2316 /* Obstacles.swift */; };
@@ -72,6 +73,7 @@
 		344AE1C82624927E00EC6BAC /* bingCsBrosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bingCsBrosUITests.swift; sourceTree = "<group>"; };
 		344AE1CA2624927E00EC6BAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		347CB74F262736D200E9C464 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		34B881FE2638626300391271 /* WinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		796E9BDE263662A30084A130 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79B3E46F2629390100EE2316 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		79B3E47426293A4B00EE2316 /* Obstacles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacles.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				344AE1AB2624927D00EC6BAC /* GameScene.swift */,
 				344AE1AD2624927D00EC6BAC /* GameViewController.swift */,
 				344AE1AF2624927D00EC6BAC /* Main.storyboard */,
+				34B881FE2638626300391271 /* WinViewController.swift */,
 				796E9BDE263662A30084A130 /* ViewController.swift */,
 				342BA8092630674800F12E0F /* CharacterViewController.swift */,
 				79B3E46F2629390100EE2316 /* Enemy.swift */,
@@ -305,6 +308,7 @@
 				344AE1AC2624927D00EC6BAC /* GameScene.swift in Sources */,
 				79B3E4702629390100EE2316 /* Enemy.swift in Sources */,
 				344AE1AE2624927D00EC6BAC /* GameViewController.swift in Sources */,
+				34B881FF2638626300391271 /* WinViewController.swift in Sources */,
 				344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */,
 				796E9BDF263662A30084A130 /* ViewController.swift in Sources */,
 				79B3E47526293A4B00EE2316 /* Obstacles.swift in Sources */,

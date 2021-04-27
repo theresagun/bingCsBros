@@ -18,6 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var collected : [SKNode] = []
     var score = 0
     var livesHelper: Int!
+    var viewCtrl: UIViewController?
     
     var scoreLabel: SKLabelNode!
     var healthLabel: SKLabelNode!
@@ -52,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //what do we want to be notified of colliding with
         mainChar.physicsBody?.contactTestBitMask = collisionTypes.enemy.rawValue | collisionTypes.power.rawValue | collisionTypes.collectible.rawValue
         //what do we not want to walk through
-        mainChar.physicsBody?.collisionBitMask = collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue
+        mainChar.physicsBody?.collisionBitMask = collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue | collisionTypes.enemy.rawValue
         
         self.livesHelper = mainChar.lives
         addChild(mainChar)
@@ -65,14 +66,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeB = contact.bodyB.node else { return }
 
         if nodeA.name == "mainChar" {
-            if(nodeB.name == "collectible"){ //happened here twice
-                print("node A is main char")
-            }
             playerCollided(with: nodeB)
         } else if nodeB.name == "mainChar" {
-            if(nodeA.name == "collectible"){
-                print("node B is main char")
-            }
             playerCollided(with: nodeA)
         }
     }
@@ -87,10 +82,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent()
         }
         else if node.name == "collectible"{
-            print("     deleting collectible!!!")
             (node as! Collectable).isCollected = true
             self.collected.append(node) //keep track of ones we collected
             node.removeFromParent() //remove from screen
+        }
+        else if node.name == "flag"{
+            self.view?.isPaused = true
+            self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
         }
         
     }
@@ -202,7 +200,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let enemy1 = Enemy(x: Int(self.frame.maxY) - 450 , y: (Int(self.frame.minX) / 4) - 30 , img: "steven", typeOfEnemy: "goomba", id: 1)
             enemy1.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
             enemy1.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
-            enemy1.physicsBody?.collisionBitMask = 0
+            enemy1.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             
             let obstacle1 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "desk", typeOfObstacles: "idk?", id: 2)
             obstacle1.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
@@ -210,7 +208,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let enemy2 = Enemy(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "madden", typeOfEnemy: "goomba", id: 3)
             enemy2.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
             enemy2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
-            enemy2.physicsBody?.collisionBitMask = 0
+            enemy2.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             
             let platform1 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 5, numQBoxes: 1)
             for box in platform1{
@@ -225,7 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let enemy3 = Enemy(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "steven", typeOfEnemy: "goomba", id: 5)
             enemy3.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
             enemy3.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
-            enemy3.physicsBody?.collisionBitMask = 0
+            enemy3.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             
             let platform2 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 5, numQBoxes: 0)  //come out before 3
             for box in platform2{
@@ -260,7 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let enemy4 = Enemy(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "madden", typeOfEnemy: "goomba", id: 7)
             enemy4.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
             enemy4.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
-            enemy4.physicsBody?.collisionBitMask = 0
+            enemy4.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             
             let platform5 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: Int(self.frame.maxX / 2) - 100, numBoxes: 4, numQBoxes: 0) //come out ebfore 6
             for box in platform5{
@@ -283,6 +281,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             
             let endFlag = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "endFlag", typeOfObstacles: "idk?", id: 8)
+            endFlag.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+            endFlag.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+            endFlag.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             
             endFlag.name = "flag"
             endFlag.size.width = 300
