@@ -13,6 +13,9 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //play in landscape mode
+        self.navigationController?.isNavigationBarHidden = true
+        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'

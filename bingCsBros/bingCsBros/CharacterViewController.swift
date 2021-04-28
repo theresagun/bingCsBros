@@ -18,13 +18,7 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-      //  prepCamera()
-        
-//        while(img == nil){
-//            //print("waiting for img")
-//        }
-        
-        //cropImg()
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,10 +26,6 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
             prepCamera()
         }
     }
-    
-//    func cropImg(){
-//        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: self.view.bounds.size.height), cornerRadius: 0)
-//    }
     
     func prepCamera(){
 
