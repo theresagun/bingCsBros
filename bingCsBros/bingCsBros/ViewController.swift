@@ -11,16 +11,19 @@ class ViewController: UIViewController {
     
     @IBOutlet var tableView : UITableView!
     
-    let scores = [
-        "19",
-        "20",
-        "3"
-    ]
+
+    //var sortedNames = sorted(scores, <)
+
+    let scores: Set = [14, 12, 17, 2, 36]
+
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
 
         // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = false
@@ -48,8 +51,13 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        let descendingStudents = scores.sorted(by: >)
+        
+        var stringArray = descendingStudents.map { String($0) }
+
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = scores[indexPath.row]
+        cell.textLabel?.text = stringArray[indexPath.row]
         return cell
     }
 
