@@ -1,22 +1,28 @@
 //
-//  WinViewController.swift
+//  CompletedGameViewController.swift
 //  bingCsBros
 //
-//  Created by Theresa Gundel on 4/27/21.
+//  Created by Kate Baumstein on 4/29/21.
 //
 
 import UIKit
 
-class WinViewController: UIViewController {
+class CompletedGameViewController: UIViewController {
 
+    @IBOutlet var finalScoreLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //TODO: set finalScoreLabel to contain actual score
+        finalScoreLabel.text = "Final Score: " + String(0)
+    
         // Do any additional setup after loading the view.
-        self.navigationController?.isNavigationBarHidden = true
     }
     
 
+    @IBAction func clickPlayAgainButton(sender: UIButton){
+            //TODO: set score back to 0
+        }
     /*
     // MARK: - Navigation
 
@@ -26,5 +32,8 @@ class WinViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
 
 }
