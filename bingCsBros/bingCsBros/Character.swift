@@ -12,6 +12,7 @@ class Character: SKSpriteNode {
     var lives: Int!
     var hasImmunity: Bool!
     var charSpeed: CGFloat!
+    var jumpCount: Int!
     
     init(x:Int, y:Int, img:String) {
         let texture = SKTexture(imageNamed: img)
@@ -20,8 +21,10 @@ class Character: SKSpriteNode {
         self.lives = 3
         self.hasImmunity = false
         self.charSpeed = 2.0
+        self.jumpCount = 0
         //physics body should be the size of the img once we have one
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        //SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody = SKPhysicsBody(rectangleOf: texture.size())
         //character stays upright
         self.physicsBody?.allowsRotation = false
         //next two are needed to make gravity work
@@ -45,6 +48,10 @@ class Character: SKSpriteNode {
     
     func jump(){
         //we can change dy if we want
+        if(self.jumpCount >= 2) {
+            return
+        }
         self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 200.0))
+        self.jumpCount += 1
     }
 }

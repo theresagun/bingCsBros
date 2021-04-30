@@ -39,6 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //so nodes don't fall off the screen
         //this is hard coded for an iphone 11 in landscape mode with camera on right
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: self.frame.minX, y: self.frame.midY-165), size: self.frame.size))
+        self.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue //ground acts as a obstacle
+        
         //for future reference:
         //bottom left corner CGPoint(x: self.frame.minX, y: self.frame.midY-165)
         //top right corner CGPoint(x: self.frame.maxX, y: self.frame.midY+165)
@@ -51,7 +53,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //what type of object is this
         mainChar.physicsBody?.categoryBitMask = collisionTypes.player.rawValue
         //what do we want to be notified of colliding with
-        mainChar.physicsBody?.contactTestBitMask = collisionTypes.enemy.rawValue | collisionTypes.power.rawValue | collisionTypes.collectible.rawValue
+        mainChar.physicsBody?.contactTestBitMask = collisionTypes.enemy.rawValue | collisionTypes.power.rawValue | collisionTypes.collectible.rawValue | collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue
         //what do we not want to walk through
         mainChar.physicsBody?.collisionBitMask = collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue | collisionTypes.enemy.rawValue
         
@@ -62,13 +64,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) { //called when beginning of a collision is detected
-        guard let nodeA = contact.bodyA.node else { return }
-        guard let nodeB = contact.bodyB.node else { return }
-
+        print("collisions")
+        guard let nodeA = contact.bodyA.node else {
+            print("hi")
+            return }
+        guard let nodeB = contact.bodyB.node else {
+            print("hello")
+            return }
+        print("hreee")
         if nodeA.name == "mainChar" {
+            print("h")
             playerCollided(with: nodeB)
         } else if nodeB.name == "mainChar" {
+            print("y")
             playerCollided(with: nodeA)
+        }
+        else{
+            
         }
     }
     
@@ -90,7 +102,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.view?.isPaused = true
             self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
         }
-        
+        else if node.name == "Obstacle"{
+            let mc = (self.childNode(withName: "mainChar") as! Character)
+            if(mc.position.y > node.position.y){
+                //if on top
+                (self.childNode(withName: "mainChar") as! Character).jumpCount = 0
+            }
+        }
+        else if node.name == "Platform"{
+            let mc = (self.childNode(withName: "mainChar") as! Character)
+            if(mc.position.y > node.position.y){
+                //if on top
+                (self.childNode(withName: "mainChar") as! Character).jumpCount = 0
+            }
+        }
+        else{
+            //collide with ground
+            (self.childNode(withName: "mainChar") as! Character).jumpCount = 0
+        }
     }
     
     func setUpLabels(){
@@ -443,6 +472,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveBackground()
         moveNodesWithBackground()
         updateLabels()
+
     }
     
     func removeEnemy(){

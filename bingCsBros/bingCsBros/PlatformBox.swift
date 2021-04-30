@@ -26,7 +26,7 @@ class PlatformBox: SKSpriteNode {
         self.size.width = 20
         self.zPosition = 1
         self.name = "Platform"
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2)
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         self.physicsBody?.isDynamic = false
     }
     
