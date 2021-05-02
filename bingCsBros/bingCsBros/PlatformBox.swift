@@ -17,7 +17,7 @@ class PlatformBox: SKSpriteNode {
             img = "stickFigure"
         }
         else {
-            img = "stickFigure"
+            img = "marioblock"
         }
         let texture = SKTexture(imageNamed: img)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
