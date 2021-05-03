@@ -12,7 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var good:Bool = false
     var startOfLevel = DispatchTime.now()
-    var level = 2 //make this persistent
+    var level = 1 //make this persistent
     var intervalsUsed : [Int] = []
     var notOnScreen : [String] = []
     var collected : [SKNode] = []
@@ -22,6 +22,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var backgroundImage = "bartle.jpeg"
     var scoreLabel: SKLabelNode!
     var healthLabel: SKLabelNode!
+    var lives = 3
+    var mainChar: Character = Character(x: 0, y: 0, img: "someName")
         
     enum collisionTypes: UInt32 {
         case player = 1
@@ -46,7 +48,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //top right corner CGPoint(x: self.frame.maxX, y: self.frame.midY+165)
         
         //testing jumping, we can remove this later 
-        let mainChar = Character(x: 0, y: 0, img: "someName")
+        //let mainChar = Character(x: 0, y: 0, img: "someName")
         mainChar.zPosition = 1
         mainChar.name = "mainChar"
         
@@ -98,6 +100,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent() //remove from screen
         }
         else if node.name == "flag"{
+            self.livesHelper = 3
+            self.level += 1
             self.view?.isPaused = true
             self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
         }
@@ -153,14 +157,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func touchDown(atPoint pos : CGPoint) {
         //jump
-        if(pos.x > -180 && pos.x < 180){
+        let displaySize = UIScreen.main.bounds
+        if(pos.y > mainChar.position.y + 30){
            // NSLog("I'm a dinosaur and I like to jump.")
             (self.children[0] as! Character).jump()
 
             
         }
         //right
-        if(pos.x < -180){
+        if(pos.x <= mainChar.position.x){
           //  NSLog("I'm a dinosaur and I like to run right.")
             (self.children[0] as! Character).moveBackward()
             callBack_backward()
@@ -168,10 +173,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
         //left
-        if(pos.x > 180){
+        if(pos.x > mainChar.position.x + mainChar.size.width/2){
           //  NSLog("I'm a dinosaur and I like to run left.")
             callBack_forward()
         }
+//
+//        if(pos.x > -180 && pos.x < 180){
+//           // NSLog("I'm a dinosaur and I like to jump.")
+//            (self.children[0] as! Character).jump()
+//
+//
+//        }
+//        //right
+//        if(pos.x < -180){
+//          //  NSLog("I'm a dinosaur and I like to run right.")
+//            (self.children[0] as! Character).moveBackward()
+//            callBack_backward()
+//
+//
+//        }
+//        //left
+//        if(pos.x > 180){
+//          //  NSLog("I'm a dinosaur and I like to run left.")
+//            callBack_forward()
+//        }
     }
     
     func callBack_forward() {
