@@ -71,19 +71,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) { //called when beginning of a collision is detected
-        print("collisions")
-        guard let nodeA = contact.bodyA.node else {
-            print("hi")
-            return }
-        guard let nodeB = contact.bodyB.node else {
-            print("hello")
-            return }
-        print("hreee")
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
         if nodeA.name == "mainChar" {
-            print("h")
             playerCollided(with: nodeB)
         } else if nodeB.name == "mainChar" {
-            print("y")
             playerCollided(with: nodeA)
         }
         else{
@@ -140,6 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           self.scoreLabel.fontColor = SKColor.white
         self.scoreLabel.text = String(format: "Score: %04u", self.score)
           self.scoreLabel.position = CGPoint(x: nodeTop.x + 200, y: nodeTop.y-50)
+        self.scoreLabel.zPosition = 1
         addChild(scoreLabel)
 
         //same for health TODO change health to hearts not %
@@ -149,6 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
           self.healthLabel.fontColor = SKColor.white
         self.healthLabel.text = String(format: "Health: 3")
           self.healthLabel.position = CGPoint(x: nodeTop.x - 200, y: nodeTop.y-50)
+        self.healthLabel.zPosition = 1
         addChild(healthLabel)
     }
     
@@ -880,7 +874,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func moveNodesWithBackground(){
         self.enumerateChildNodes(withName: "Enemy", using: ({
             (node,error) in
-            node.position.x -= 1
+            (node as! Enemy).idleMovement()
         }) )
         
         self.enumerateChildNodes(withName: "Obstacle", using: ({
