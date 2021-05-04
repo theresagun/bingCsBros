@@ -13,6 +13,7 @@ class Character: SKSpriteNode {
     var hasImmunity: Bool!
     var charSpeed: CGFloat!
     var jumpCount: Int!
+    var powerTimer: Int!
     
     init(x:Int, y:Int, img:String) {
         let texture = SKTexture(imageNamed: img)
@@ -22,6 +23,7 @@ class Character: SKSpriteNode {
         self.hasImmunity = false
         self.charSpeed = 2.0
         self.jumpCount = 0
+        self.powerTimer = 0
         //physics body should be the size of the img once we have one
         //SKPhysicsBody(circleOfRadius: self.size.width / 2)
         self.size.width = 64

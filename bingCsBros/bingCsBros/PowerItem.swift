@@ -10,9 +10,19 @@ import SpriteKit
 
 class PowerItem: SKSpriteNode {
     var power: String!
-    init(x:Int, y:Int, powerType:String, img:String) {
+    init(x:Int, y:Int, powerType:String) {
+        var img = ""
+        switch powerType {
+        case "Immunity":
+            img = "aPlus"
+        case "SpeedBoost":
+            img = "coffee"
+        default:
+            img = ""
+        }
         let texture = SKTexture(imageNamed: img)
-        super.init(texture: texture, color: UIColor.clear, size: texture.size())
+        let sz = CGSize(width: 30, height: 40)
+        super.init(texture: texture, color: UIColor.clear, size: sz)
         self.position = CGPoint(x: x, y: y)
         self.power = powerType
         self.zPosition = 1
@@ -27,17 +37,19 @@ class PowerItem: SKSpriteNode {
     func characterEffect(currChar:Character) {
         if(power == "Immunity") {
             currChar.hasImmunity = true
-            let start = Date()
-            while(start.timeIntervalSinceNow < 5) {
-            }
-            currChar.hasImmunity = false
+            currChar.powerTimer = 400
+//            let start = Date()
+//            while(start.timeIntervalSinceNow < 5) {
+//            }
+//            currChar.hasImmunity = false
         }
         else if (power == "SpeedBoost") {
             currChar.charSpeed = 4.0
-            let start = Date()
-            while(start.timeIntervalSinceNow < 5) {
-            }
-            currChar.charSpeed = 2.0
+            currChar.powerTimer = 400
+//            let start = Date()
+//            while(start.timeIntervalSinceNow < 5) {
+//            }
+           // currChar.charSpeed = 2.0
         }
     }
 }

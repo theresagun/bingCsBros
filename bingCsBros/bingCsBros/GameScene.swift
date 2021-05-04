@@ -55,7 +55,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //what type of object is this
         mainChar.physicsBody?.categoryBitMask = collisionTypes.player.rawValue
         //what do we want to be notified of colliding with
-        mainChar.physicsBody?.contactTestBitMask = collisionTypes.enemy.rawValue | collisionTypes.power.rawValue | collisionTypes.collectible.rawValue | collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue
+        mainChar.physicsBody?.contactTestBitMask = collisionTypes.enemy.rawValue | collisionTypes.power.rawValue | collisionTypes.collectible.rawValue | collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue | collisionTypes.power.rawValue
         //what do we not want to walk through
         mainChar.physicsBody?.collisionBitMask = collisionTypes.obstacle.rawValue | collisionTypes.platform.rawValue | collisionTypes.enemy.rawValue
         
@@ -91,6 +91,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 en.removeFromParent()
                 mc.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 50.0))
             }
+            else if(mc.hasImmunity){
+                en.removeFromParent()
+            }
             else{
                 (self.childNode(withName: "mainChar") as! Character).lives -= 1
                 self.livesHelper -= 1
@@ -123,6 +126,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if(mc.position.y > node.position.y){
                 //if on top
                 (self.childNode(withName: "mainChar") as! Character).jumpCount = 0
+            }
+            else if(mc.position.y < node.position.y){
+                //bottom
+                if((node as! PlatformBox).isQuestion){
+                    powerItemAppear(node: node as! PlatformBox)
+                }
             }
         }
         else{
@@ -159,6 +168,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func updateLabels(){
         self.scoreLabel.text = String(format: "Score: %04u", self.score)
         self.healthLabel.text = String(format: "Health: %04u", self.livesHelper)
+    }
+    
+    func powerItemAppear(node: PlatformBox){
+        let pItem = PowerItem(x: Int(node.position.x), y: Int(node.position.y) + 30, powerType: node.powerType ?? "")
+        pItem.physicsBody?.categoryBitMask = collisionTypes.power.rawValue
+        pItem.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        pItem.physicsBody?.affectedByGravity = false
+        pItem.zPosition = 1
+        addChild(pItem)
     }
     
     func touchDown(atPoint pos : CGPoint) {
@@ -277,6 +295,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
                 box.physicsBody?.contactTestBitMask = 0
                 box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+                if((box as! PlatformBox).isQuestion){
+                    (box as! PlatformBox).powerType = "SpeedBoost"
+                }
             }
             
             let obstacle2 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "chair", typeOfObstacles: "idk?", id: 4)
@@ -299,6 +320,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
                 box.physicsBody?.contactTestBitMask = 0
                 box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+                if((box as! PlatformBox).isQuestion){
+                    (box as! PlatformBox).powerType = "Immunity"
+                }
             }
             
             let collectible1 = Collectable(x: Int(self.frame.maxY) - 105, y: Int(self.frame.maxX / 2) - 100 + 25, img: "stackOverflowLogo")
@@ -831,7 +855,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveBackground()
         moveNodesWithBackground()
         updateLabels()
-
+        checkChar()
+    }
+    
+    func checkChar(){
+        let mc = (self.childNode(withName: "mainChar") as! Character)
+        mc.powerTimer -= 1
+        if(mc.powerTimer == 0){
+            if(mc.charSpeed == 4.0){
+                mc.charSpeed = 2.0
+            }
+            else if(mc.hasImmunity){
+                mc.hasImmunity = false
+            }
+        }
     }
     
     func removeEnemy(){
@@ -924,6 +961,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }) )
         
         self.enumerateChildNodes(withName: "flag", using: ({
+            (node,error) in
+            node.position.x -= 1
+        }) )
+        
+        self.enumerateChildNodes(withName: "powerItem", using: ({
             (node,error) in
             node.position.x -= 1
         }) )

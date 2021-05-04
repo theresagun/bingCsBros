@@ -11,10 +11,12 @@ import SpriteKit
 class PlatformBox: SKSpriteNode {
     var isQuestion: Bool!
     var img: String!
+    var powerType: String?
+    
     init(x:Int, y:Int, isQ:Bool) {
         isQuestion = isQ
         if(isQuestion == true) {
-            img = "stickFigure"
+            img = "questionbox"
         }
         else {
             img = "marioblock"
