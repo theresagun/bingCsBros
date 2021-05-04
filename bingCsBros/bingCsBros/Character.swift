@@ -24,7 +24,9 @@ class Character: SKSpriteNode {
         self.jumpCount = 0
         //physics body should be the size of the img once we have one
         //SKPhysicsBody(circleOfRadius: self.size.width / 2)
-        self.physicsBody = SKPhysicsBody(rectangleOf: texture.size())
+        self.size.width = 64
+        self.size.height = 75
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
         //character stays upright
         self.physicsBody?.allowsRotation = false
         //next two are needed to make gravity work
@@ -32,6 +34,9 @@ class Character: SKSpriteNode {
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.friction = 1
         self.zPosition = 1
+        self.size.width = 64
+        self.size.height = 75
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +56,7 @@ class Character: SKSpriteNode {
         if(self.jumpCount >= 2) {
             return
         }
-        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 200.0))
+        self.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 80.0))
         self.jumpCount += 1
     }
 }
