@@ -78,15 +78,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeB.name == "mainChar" {
             playerCollided(with: nodeA)
         }
-        else{
-            
-        }
     }
     
     func playerCollided(with node: SKNode){
         if node.name == "Enemy"{
-            (self.childNode(withName: "mainChar") as! Character).lives -= 1
-            self.livesHelper -= 1
+            let mc = (self.childNode(withName: "mainChar") as! Character)
+            let en = (node as! Enemy)
+            if(mc.position.y >= en.position.y){
+                //die
+                en.removeFromParent()
+                mc.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 150.0))
+            }
+            else{
+                (self.childNode(withName: "mainChar") as! Character).lives -= 1
+                self.livesHelper -= 1
+            }
         }
         else if node.name == "powerItem"{
             (node as! PowerItem).characterEffect(currChar: (self.childNode(withName: "mainChar") as! Character))

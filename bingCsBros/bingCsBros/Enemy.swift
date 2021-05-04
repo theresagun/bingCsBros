@@ -46,15 +46,11 @@ class Enemy: SKSpriteNode {
     }
     
     func moveForward(){
-        self.position.x += CGFloat(0.5)
+        self.position.x += CGFloat(1)
     }
 
     func moveBackward(){
         self.position.x -= CGFloat(1)
-    }
-    
-    func gMove(){
-        self.position.x += CGFloat(goombaMove!)
     }
     
     func idleMovement(){
