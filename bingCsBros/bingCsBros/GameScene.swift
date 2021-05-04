@@ -89,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if(mc.position.y >= en.position.y){
                 //die
                 en.removeFromParent()
-                mc.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 150.0))
+                mc.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 50.0))
             }
             else{
                 (self.childNode(withName: "mainChar") as! Character).lives -= 1
