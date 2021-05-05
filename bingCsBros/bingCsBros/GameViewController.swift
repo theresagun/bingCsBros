@@ -10,6 +10,9 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    
+    var score: Int?
+    var level: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +46,8 @@ class GameViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "gameToWin"){
             let win: WinViewController = segue.destination as! WinViewController
-            
+            win.score = self.score
+            win.level = self.level
         }
     }
     

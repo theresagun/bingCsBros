@@ -265,17 +265,6 @@
                                 <rect key="frame" x="50" y="644" width="318" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.019596729430000001" green="0.41846686599999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Start level &lt;num&gt;">
-                                            <attributes>
-                                                <color key="NSColor" red="0.99722398477157359" green="0.99722398477157359" blue="0.99722398477157359" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="33" name="TimesNewRomanPS-BoldMT"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
                                 <connections>
                                     <action selector="clickPlayAgainButtonWithSender:" destination="n21-9N-zFV" eventType="touchUpInside" id="IxA-iC-8YQ"/>
                                     <action selector="clickPlayAgainButtonWithSender:" destination="WsL-j4-hnt" eventType="touchUpInside" id="pWE-hH-iy9"/>
@@ -508,10 +497,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-
         <segue reference="DVP-k4-Xt1"/>
         <segue reference="0Ib-jd-ti3"/>
-        <segue reference="cy7-RP-Gsk"/>
+        <segue reference="pbc-yn-Ln5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PassedLevelLogo" width="544" height="220"/>

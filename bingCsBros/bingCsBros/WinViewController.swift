@@ -13,16 +13,19 @@ class WinViewController: UIViewController {
     @IBOutlet var currentLevelLabel: UILabel!
     @IBOutlet var startNextLevelButton: UIButton!
 
-
+    var score: Int?
+    var level: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = true
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         //TODO: set finalScoreLabel to contain actual score
-        currentScoreLabel.text = "Current Score: " + String(0)
-        currentLevelLabel.text = "You passed level " + String(0) + "!"
-        startNextLevelButton.setTitle( "Start level " + String(0), for: .normal)
+        currentScoreLabel.text = "Current Score: " + String(self.score ?? 0)
+        currentLevelLabel.text = "You passed level " + String(self.level ?? 0) + "!"
+        startNextLevelButton.titleLabel?.font = UIFont(descriptor: UIFontDescriptor.init(name: "Times New Roman Bold", size: CGFloat(30)), size: CGFloat(30))
+        startNextLevelButton.setTitleColor(UIColor.white, for: .normal)
+        startNextLevelButton.setTitle( "Start level " + String((self.level ?? 0) + 1), for: .normal)
         
         // Do any additional setup after loading the view.
     }

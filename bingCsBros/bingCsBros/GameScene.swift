@@ -109,8 +109,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else if node.name == "flag"{
             self.livesHelper = 3
-            self.level += 1
             self.view?.isPaused = true
+            (self.viewCtrl as! GameViewController).score = self.score
+            (self.viewCtrl as! GameViewController).level = self.level
+            self.level += 1
             self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
         }
         else if node.name == "Obstacle"{
@@ -413,7 +415,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             intervalsUsed.append(Int(timeInterval))
             enemy1.zPosition = 1
             addChild(enemy1)
-            addChild(endFlag)
+//            addChild(endFlag)
             //self.nodesToMove.append(enemy1.debugDescription)
     
             //moveEnemiesBackAndForth()
