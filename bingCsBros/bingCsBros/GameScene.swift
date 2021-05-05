@@ -384,6 +384,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 intervalsUsed.append(Int(timeInterval))
                 enemy1.zPosition = 1
                 addChild(enemy1)
+                
+                addChild(endFlag)
                 //self.nodesToMove.append(enemy1.debugDescription)
         
                 //moveEnemiesBackAndForth()

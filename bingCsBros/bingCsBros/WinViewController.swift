@@ -17,8 +17,8 @@ class WinViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         self.navigationController?.isNavigationBarHidden = true
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         //TODO: set finalScoreLabel to contain actual score
         currentScoreLabel.text = "Current Score: " + String(0)
         currentLevelLabel.text = "You passed level " + String(0) + "!"
@@ -26,16 +26,14 @@ class WinViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
     
-    override var shouldAutorotate: Bool {
-        return true
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        //can only run game portion in lanscape mode not portrait
-        return .portrait
-    }
+
     /*
     // MARK: - Navigation
 

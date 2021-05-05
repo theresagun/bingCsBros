@@ -13,10 +13,6 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //play in landscape mode
-        self.navigationController?.isNavigationBarHidden = true
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -32,24 +28,23 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.landscape, andRotateTo: .landscapeLeft)
+        
     }
 
-    override var shouldAutorotate: Bool {
-        return true
-    }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        //can only run game portion in lanscape mode not portrait
-        return .landscape
-    }
-
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "gameToWin"){
             let win: WinViewController = segue.destination as! WinViewController
+            
         }
     }
+    
 }
