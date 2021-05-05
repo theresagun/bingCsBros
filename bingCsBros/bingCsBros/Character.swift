@@ -15,8 +15,8 @@ class Character: SKSpriteNode {
     var jumpCount: Int!
     var powerTimer: Int!
     
-    init(x:Int, y:Int, img:String) {
-        let texture = SKTexture(imageNamed: img)
+    init(x:Int, y:Int, img:UIImage) {
+        let texture = SKTexture(image: img)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = CGPoint(x: x, y: y)
         self.lives = 3

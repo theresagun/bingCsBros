@@ -23,7 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel: SKLabelNode!
     var healthLabel: SKLabelNode!
     var lives = 3
-    var mainChar: Character = Character(x: 0, y: 0, img: "someName")
+    var mainChar: Character!
         
     enum collisionTypes: UInt32 {
         case player = 1
@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        print("Hello from didMove")
         //needed for gravity/jumping
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -5) //can change dy if we want
@@ -48,7 +49,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //top right corner CGPoint(x: self.frame.maxX, y: self.frame.midY+165)
         
         //testing jumping, we can remove this later 
-        //let mainChar = Character(x: 0, y: 0, img: "someName")
+        mainChar = Character(x: 0, y: 0, img: ((self.viewCtrl as! GameViewController).characterImage!))
         mainChar.zPosition = 1
         mainChar.name = "mainChar"
         
@@ -269,6 +270,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func update(_ currentTime: TimeInterval) {
+        print("Hello from update")
+        if(mainChar==nil) {
+            print("mainchar not nil")
+        }
         // Called before each frame is rendered
         //NSLog("%f", mainChar.position.x)
         if(mainChar.position.x < -400){

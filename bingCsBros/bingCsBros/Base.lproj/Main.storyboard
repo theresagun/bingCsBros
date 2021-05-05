@@ -201,7 +201,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="play"/>
                                 <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="cy7-RP-Gsk"/>
+                                    <segue destination="BV1-FR-VrT" kind="show" identifier="characterToGame" id="cy7-RP-Gsk"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeP-9l-gba">
@@ -499,7 +499,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="DVP-k4-Xt1"/>
         <segue reference="0Ib-jd-ti3"/>
-        <segue reference="pbc-yn-Ln5"/>
+        <segue reference="cy7-RP-Gsk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PassedLevelLogo" width="544" height="220"/>

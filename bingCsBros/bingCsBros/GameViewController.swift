@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     
     var score: Int?
     var level: Int?
+    var characterImage: UIImage?
 
     override func viewDidLoad() {
         super.viewDidLoad()

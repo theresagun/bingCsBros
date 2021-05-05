@@ -36,6 +36,9 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
             vc.delegate = self
             present(vc, animated: true)
         }
+        else {
+            self.img = UIImage(named:"baxter")
+        }
     }
         
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -76,6 +79,7 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
         self.displayImg.image = newImage
         self.displayImg.setNeedsDisplay()
         
+        self.img = newImage
         //save to assets to use  in the game
     }
 
@@ -98,10 +102,15 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "characterToGame") {
+            let game:GameViewController = segue.destination as!GameViewController
+            game.characterImage = self.img
+        }
     }
-    */
+    
 
 }
