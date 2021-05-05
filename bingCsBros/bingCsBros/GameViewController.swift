@@ -47,4 +47,9 @@ class GameViewController: UIViewController {
         }
     }
     
+
+    func goToGameOver(){
+        //NSLog("called goToGameOver")
+    }
+
 }

@@ -32,11 +32,11 @@
             <objects>
                 <viewController id="GSC-Jc-0uh" customClass="ViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fDy-Uo-4Qa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3o-ee-8Dr">
-                                <rect key="frame" x="25" y="163" width="364" height="674"/>
+                                <rect key="frame" x="25" y="75" width="364" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="N94-JK-KSu">
@@ -186,7 +186,7 @@
             <objects>
                 <viewController id="5Ib-ak-N8X" customClass="CharacterViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rRL-J1-V4q">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="make character" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0a3-co-6DN">
@@ -307,7 +307,7 @@
         <!--Game Over View Controller-->
         <scene sceneID="c7e-nG-8hi">
             <objects>
-                <viewController id="n21-9N-zFV" customClass="GameOverViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameOverID" id="n21-9N-zFV" customClass="GameOverViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUz-PG-RqC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -508,9 +508,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+<<<<<<< HEAD
         <segue reference="8GP-9Y-Ia9"/>
         <segue reference="OBs-j1-N8z"/>
         <segue reference="pbc-yn-Ln5"/>
+=======
+        <segue reference="DVP-k4-Xt1"/>
+        <segue reference="0Ib-jd-ti3"/>
+        <segue reference="cy7-RP-Gsk"/>
+>>>>>>> jack
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PassedLevelLogo" width="544" height="220"/>
