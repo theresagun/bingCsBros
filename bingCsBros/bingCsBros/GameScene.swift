@@ -183,7 +183,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //jump
         let displaySize = UIScreen.main.bounds
         if(pos.y > mainChar.position.y + 30){
-           // NSLog("I'm a dinosaur and I like to jump.")
+            //NSLog("I'm a dinosaur and I like to jump.")
             (self.children[0] as! Character).jump()
 
             
@@ -273,6 +273,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        //NSLog("%f", mainChar.position.x)
+        if(mainChar.position.x < -400){
+            //NSLog("Our of screen")
+            //let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            
+            GameViewController().goToGameOver()
+            //GameViewController.goToGameOver()
+            
+        }
         var timeInterval = 0.0
         if(level == 1 ){
             backgroundImage = "bartle.jpeg"

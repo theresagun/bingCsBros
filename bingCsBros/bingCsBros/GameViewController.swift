@@ -52,4 +52,8 @@ class GameViewController: UIViewController {
             let win: WinViewController = segue.destination as! WinViewController
         }
     }
+    
+    func goToGameOver(){
+        //NSLog("called goToGameOver")
+    }
 }

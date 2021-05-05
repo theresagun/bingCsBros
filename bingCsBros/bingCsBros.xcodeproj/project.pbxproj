@@ -30,6 +30,7 @@
 		347CB750262736D200E9C464 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CB74F262736D200E9C464 /* Character.swift */; };
 		34C7CBB4263C50AE009F571C /* WinLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C7CBB3263C50AE009F571C /* WinLevelViewController.swift */; };
 		34F6F8DE26404493009D5709 /* marioblock.png in Resources */ = {isa = PBXBuildFile; fileRef = 34F6F8DD26404493009D5709 /* marioblock.png */; };
+		7907592F2642E5E100766DA2 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907592E2642E5E000766DA2 /* GameOverViewController.swift */; };
 		796E9BDF263662A30084A130 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E9BDE263662A30084A130 /* ViewController.swift */; };
 		79B3E4702629390100EE2316 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E46F2629390100EE2316 /* Enemy.swift */; };
 		79B3E47526293A4B00EE2316 /* Obstacles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E47426293A4B00EE2316 /* Obstacles.swift */; };
@@ -82,6 +83,7 @@
 		347CB74F262736D200E9C464 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		34C7CBB3263C50AE009F571C /* WinLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinLevelViewController.swift; sourceTree = "<group>"; };
 		34F6F8DD26404493009D5709 /* marioblock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marioblock.png; sourceTree = "<group>"; };
+		7907592E2642E5E000766DA2 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		796E9BDE263662A30084A130 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79B3E46F2629390100EE2316 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		79B3E47426293A4B00EE2316 /* Obstacles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacles.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				2C494D5C262F460B008EC632 /* Collectable.swift */,
 				2C494D61262F4AF7008EC632 /* PowerItem.swift */,
 				344AE1B22624927E00EC6BAC /* Assets.xcassets */,
+				7907592E2642E5E000766DA2 /* GameOverViewController.swift */,
 				34030562262DC7B800BFBA5C /* bartle.jpeg */,
 				34030564262DC7B800BFBA5C /* jazzmans.jpeg */,
 				34F6F8DD26404493009D5709 /* marioblock.png */,
@@ -333,6 +336,7 @@
 				2C494D62262F4AF7008EC632 /* PowerItem.swift in Sources */,
 				2C494D6C262F51B4008EC632 /* PlatformBox.swift in Sources */,
 				347CB750262736D200E9C464 /* Character.swift in Sources */,
+				7907592F2642E5E100766DA2 /* GameOverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

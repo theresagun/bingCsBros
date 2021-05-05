@@ -304,7 +304,7 @@
         <!--Game Over View Controller-->
         <scene sceneID="c7e-nG-8hi">
             <objects>
-                <viewController id="n21-9N-zFV" customClass="GameOverViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameOverID" id="n21-9N-zFV" customClass="GameOverViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUz-PG-RqC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
