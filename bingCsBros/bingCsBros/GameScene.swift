@@ -7,23 +7,27 @@
 
 import SpriteKit
 import GameplayKit
+import CoreData
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var good:Bool = false
     var startOfLevel = DispatchTime.now()
-    var level = 1 //make this persistent
+    var level : Int = 1 //make this persistent
     var intervalsUsed : [Int] = []
     var notOnScreen : [String] = []
     var collected : [SKNode] = []
-    var score = 0
+    var score : Int = 0
     var livesHelper: Int!
     var viewCtrl: UIViewController?
     var backgroundImage = "bartle.jpeg"
     var scoreLabel: SKLabelNode!
     var healthLabel: SKLabelNode!
-    var lives = 3
+    var lives : Int = 3
     var mainChar: Character!
+    
+    
+    var scoreboard: [NSManagedObject] = []
         
     enum collisionTypes: UInt32 {
         case player = 1
@@ -35,6 +39,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        
+        scoreboard = ScoreboardDatabase.fetchScoreboard()
+        if(scoreboard.count == 0 ){
+            print("SAVING SCOREBOARD 1ST TIME")
+            scoreboard = ScoreboardDatabase.saveFirstScoreboard()
+        }
+        else{
+            //reset level and score
+           // ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            //ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            score = scoreboard[0].value(forKey: "score") as! Int
+            level = scoreboard[0].value(forKey: "level") as! Int
+            lives = scoreboard[0].value(forKey: "lives") as! Int
+        }
+        
         print("Hello from didMove")
         //needed for gravity/jumping
         self.physicsWorld.contactDelegate = self
@@ -48,8 +67,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //bottom left corner CGPoint(x: self.frame.minX, y: self.frame.midY-165)
         //top right corner CGPoint(x: self.frame.maxX, y: self.frame.midY+165)
         
-        //testing jumping, we can remove this later 
-        mainChar = Character(x: 0, y: 0, img: ((self.viewCtrl as! GameViewController).characterImage!))
+        //testing jumping, we can remove this later
+        
+        //delete once char img added to db
+        let dummy = UIImage(named: "stickFigure.png")
+        if(((self.viewCtrl as! GameViewController).characterImage) == nil){
+            mainChar = Character(x: 0, y: 0, img: dummy!)
+        }
+        //end delete
+        else {
+            mainChar = Character(x: 0, y: 0, img: ((self.viewCtrl as! GameViewController).characterImage!))
+        }
+        
         mainChar.zPosition = 1
         mainChar.name = "mainChar"
         
@@ -109,12 +138,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeFromParent() //remove from screen
         }
         else if node.name == "flag"{
+            //TODO: if collision when level is 3, bring to completed game viewcontroller
             self.livesHelper = 3
-            self.view?.isPaused = true
-            (self.viewCtrl as! GameViewController).score = self.score
-            (self.viewCtrl as! GameViewController).level = self.level
             self.level += 1
+            self.view?.isPaused = true
+            ScoreboardDatabase.updateLevel(newLevel: Int64(self.level), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateScore(newScore: Int64(self.score), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLives(newLives: Int64(self.livesHelper!), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+//            (self.viewCtrl as! GameViewController).score = self.score
+//            (self.viewCtrl as! GameViewController).level = self.level
             self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
+            //update score and level, set lives back to 3
+            
         }
         else if node.name == "Obstacle"{
             let mc = (self.childNode(withName: "mainChar") as! Character)
@@ -290,10 +325,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             timeInterval = playLevel2()
         } //end of if level == 2
         
-        self.score = Int(timeInterval)
+        self.score += Int(timeInterval)
         moveBackground()
         moveNodesWithBackground()
-         updateLabels()
+        updateLabels()
         checkChar()
     }
     
@@ -420,7 +455,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             intervalsUsed.append(Int(timeInterval))
             enemy1.zPosition = 1
             addChild(enemy1)
-//            addChild(endFlag)
+     //       addChild(endFlag)
             //self.nodesToMove.append(enemy1.debugDescription)
     
             //moveEnemiesBackAndForth()

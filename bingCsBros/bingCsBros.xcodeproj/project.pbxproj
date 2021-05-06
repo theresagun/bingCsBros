@@ -30,6 +30,11 @@
 		347CB750262736D200E9C464 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CB74F262736D200E9C464 /* Character.swift */; };
 		34C7CBB4263C50AE009F571C /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C7CBB3263C50AE009F571C /* WinViewController.swift */; };
 		34F6F8DE26404493009D5709 /* marioblock.png in Resources */ = {isa = PBXBuildFile; fileRef = 34F6F8DD26404493009D5709 /* marioblock.png */; };
+		4419900526443AEC00C9D26C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4419900326443AEB00C9D26C /* DataModel.xcdatamodeld */; };
+		4419900B26443C4300C9D26C /* Scoreboard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419900926443C4300C9D26C /* Scoreboard+CoreDataClass.swift */; };
+		4419900C26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419900A26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift */; };
+		4419901126443E0500C9D26C /* ScoreboardDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419901026443E0500C9D26C /* ScoreboardDatabase.swift */; };
+		4419901626444F7C00C9D26C /* CompletedGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419901526444F7B00C9D26C /* CompletedGameViewController.swift */; };
 		7907592F2642E5E100766DA2 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907592E2642E5E000766DA2 /* GameOverViewController.swift */; };
 		796E9BDF263662A30084A130 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E9BDE263662A30084A130 /* ViewController.swift */; };
 		79B3E4702629390100EE2316 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E46F2629390100EE2316 /* Enemy.swift */; };
@@ -83,6 +88,11 @@
 		347CB74F262736D200E9C464 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		34C7CBB3263C50AE009F571C /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		34F6F8DD26404493009D5709 /* marioblock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marioblock.png; sourceTree = "<group>"; };
+		4419900426443AEB00C9D26C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		4419900926443C4300C9D26C /* Scoreboard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scoreboard+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4419900A26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scoreboard+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4419901026443E0500C9D26C /* ScoreboardDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardDatabase.swift; sourceTree = "<group>"; };
+		4419901526444F7B00C9D26C /* CompletedGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompletedGameViewController.swift; sourceTree = "<group>"; };
 		7907592E2642E5E000766DA2 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		796E9BDE263662A30084A130 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79B3E46F2629390100EE2316 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -117,6 +127,8 @@
 		344AE1992624927D00EC6BAC = {
 			isa = PBXGroup;
 			children = (
+				4419900926443C4300C9D26C /* Scoreboard+CoreDataClass.swift */,
+				4419900A26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift */,
 				344AE1A42624927D00EC6BAC /* bingCsBros */,
 				344AE1BC2624927E00EC6BAC /* bingCsBrosTests */,
 				344AE1C72624927E00EC6BAC /* bingCsBrosUITests */,
@@ -138,7 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				344AE1A52624927D00EC6BAC /* AppDelegate.swift */,
+				4419901026443E0500C9D26C /* ScoreboardDatabase.swift */,
 				344AE1A72624927D00EC6BAC /* GameScene.sks */,
+				4419901526444F7B00C9D26C /* CompletedGameViewController.swift */,
 				344AE1A92624927D00EC6BAC /* Actions.sks */,
 				344AE1AB2624927D00EC6BAC /* GameScene.swift */,
 				344AE1AD2624927D00EC6BAC /* GameViewController.swift */,
@@ -163,6 +177,7 @@
 				34030563262DC7B800BFBA5C /* marketplace.jpeg */,
 				342BA80E263072BF00F12E0F /* stickFigure.png */,
 				344AE1B42624927E00EC6BAC /* Info.plist */,
+				4419900326443AEB00C9D26C /* DataModel.xcdatamodeld */,
 			);
 			path = bingCsBros;
 			sourceTree = "<group>";
@@ -326,8 +341,13 @@
 			files = (
 				344AE1AC2624927D00EC6BAC /* GameScene.swift in Sources */,
 				79B3E4702629390100EE2316 /* Enemy.swift in Sources */,
+				4419901126443E0500C9D26C /* ScoreboardDatabase.swift in Sources */,
 				344AE1AE2624927D00EC6BAC /* GameViewController.swift in Sources */,
+				4419900526443AEC00C9D26C /* DataModel.xcdatamodeld in Sources */,
+				4419900B26443C4300C9D26C /* Scoreboard+CoreDataClass.swift in Sources */,
+				4419900C26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift in Sources */,
 				344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */,
+				4419901626444F7C00C9D26C /* CompletedGameViewController.swift in Sources */,
 				796E9BDF263662A30084A130 /* ViewController.swift in Sources */,
 				79B3E47526293A4B00EE2316 /* Obstacles.swift in Sources */,
 				2C494D5D262F460B008EC632 /* Collectable.swift in Sources */,
@@ -663,6 +683,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4419900326443AEB00C9D26C /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4419900426443AEB00C9D26C /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 4419900426443AEB00C9D26C /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 344AE19A2624927D00EC6BAC /* Project object */;
 }

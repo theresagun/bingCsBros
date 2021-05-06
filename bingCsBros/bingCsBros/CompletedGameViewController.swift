@@ -6,16 +6,28 @@
 //
 
 import UIKit
+import CoreData
 
 class CompletedGameViewController: UIViewController {
 
     @IBOutlet var finalScoreLabel: UILabel!
+    var scoreDB: Int?
+    var levelDB: Int?
+    var scoreboard: [NSManagedObject]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //TODO: set finalScoreLabel to contain actual score
-        finalScoreLabel.text = "Final Score: " + String(0)
-    
+        scoreboard = ScoreboardDatabase.fetchScoreboard()
+        if(scoreboard!.count == 0 ){
+            print("SAVING SCOREBOARD 1ST TIME")
+            scoreboard = ScoreboardDatabase.saveFirstScoreboard()
+        }
+        else{
+            scoreDB = scoreboard?[0].value(forKey: "score") as! Int
+        }
+        finalScoreLabel.text = "Final Score: " + String(scoreDB!)
+
         // Do any additional setup after loading the view.
     }
     
