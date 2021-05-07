@@ -21,6 +21,7 @@
                     <navigationItem key="navigationItem" id="erg-5b-KPZ"/>
                     <connections>
                         <segue destination="byX-8a-i5D" kind="show" identifier="gameToWin" id="iwD-1U-GZt"/>
+                        <segue destination="n21-9N-zFV" kind="show" identifier="gameToLose" id="4sT-hc-BZe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -291,14 +292,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ggw-7k-wNl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1634.7826086956522" y="-64.285714285714278"/>
+            <point key="canvasLocation" x="1813" y="-64"/>
         </scene>
         <!--Game Over View Controller-->
         <scene sceneID="c7e-nG-8hi">
             <objects>
                 <viewController storyboardIdentifier="GameOverID" id="n21-9N-zFV" customClass="GameOverViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jUz-PG-RqC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gameOverLogo" translatesAutoresizingMaskIntoConstraints="NO" id="OsO-HY-nvp">
@@ -375,13 +376,14 @@
                         <viewLayoutGuide key="safeArea" id="E9M-bp-6HZ"/>
                         <color key="backgroundColor" red="0.0" green="0.22068732612637776" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
+                    <navigationItem key="navigationItem" id="l7P-ko-nRa"/>
                     <connections>
                         <outlet property="finalScoreLabel" destination="yO5-nz-KDz" id="0Rl-Fg-63G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hm-xi-MDm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="379.71014492753625" y="1356.6964285714284"/>
+            <point key="canvasLocation" x="1706" y="674"/>
         </scene>
         <!--Completed Game View Controller-->
         <scene sceneID="Ewu-P2-KgW">
@@ -497,6 +499,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="4sT-hc-BZe"/>
         <segue reference="DVP-k4-Xt1"/>
         <segue reference="0Ib-jd-ti3"/>
         <segue reference="cy7-RP-Gsk"/>

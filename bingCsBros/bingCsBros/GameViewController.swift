@@ -50,11 +50,14 @@ class GameViewController: UIViewController {
             win.score = self.score
             win.level = self.level
         }
+        if(segue.identifier == "gameToLose"){
+            let lose: GameOverViewController = segue.destination as! GameOverViewController
+            //lose.score = self.score
+            //lose.level = self.level
+        }
     }
     
+    
 
-    func goToGameOver(){
-        //NSLog("called goToGameOver")
-    }
 
 }

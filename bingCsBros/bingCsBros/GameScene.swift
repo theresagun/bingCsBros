@@ -312,10 +312,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         //NSLog("%f", mainChar.position.x)
         if(mainChar.position.x < -400){
-            //NSLog("Our of screen")
-            //let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            GameViewController().goToGameOver()
-            //GameViewController.goToGameOver()
+            NSLog("Out of screen")
+            self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
+            mainChar.position.x = 0
         }
         var timeInterval = 0
         if(level == 1 ){
