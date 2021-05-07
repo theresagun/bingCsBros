@@ -14,6 +14,7 @@ class Character: SKSpriteNode {
     var charSpeed: CGFloat!
     var jumpCount: Int!
     var powerTimer: Int!
+    var isGoingRight: Bool!
     
     init(x:Int, y:Int, img:UIImage) {
         let texture = SKTexture(image: img)
@@ -24,6 +25,7 @@ class Character: SKSpriteNode {
         self.charSpeed = 2.0
         self.jumpCount = 0
         self.powerTimer = 0
+        self.isGoingRight = false
         //physics body should be the size of the img once we have one
         //SKPhysicsBody(circleOfRadius: self.size.width / 2)
         self.size.width = 64
@@ -46,11 +48,14 @@ class Character: SKSpriteNode {
     }
     
     func moveForward(){
+        print("calling move forwqard")
         self.position.x += charSpeed
+        self.isGoingRight = true
     }
 
     func moveBackward(){
         self.position.x -= charSpeed
+        self.isGoingRight = false
     }
     
     func jump(){

@@ -63,22 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: self.frame.minX, y: self.frame.midY-165), size: self.frame.size))
         self.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue //ground acts as a obstacle
         
-        //for future reference:
-        //bottom left corner CGPoint(x: self.frame.minX, y: self.frame.midY-165)
-        //top right corner CGPoint(x: self.frame.maxX, y: self.frame.midY+165)
-        
-        //testing jumping, we can remove this later
-        
-        //delete once char img added to db
-        let dummy = UIImage(named: "stickFigure.png")
-        if(((self.viewCtrl as! GameViewController).characterImage) == nil){
-            mainChar = Character(x: 0, y: 0, img: dummy!)
-        }
-        //end delete
-        else {
-            mainChar = Character(x: 0, y: 0, img: ((self.viewCtrl as! GameViewController).characterImage!))
-        }
-        
+        mainChar = Character(x: 0, y: 0, img: ((self.viewCtrl as! GameViewController).characterImage!))
         mainChar.zPosition = 1
         mainChar.name = "mainChar"
         
@@ -116,7 +101,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let mc = (self.childNode(withName: "mainChar") as! Character)
             let en = (node as! Enemy)
             if(mc.position.y >= en.position.y){
-                //die
+                //kill enemy
                 en.removeFromParent()
                 mc.physicsBody?.applyImpulse(CGVector(dx: 0.0, dy: 50.0))
             }
@@ -124,8 +109,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 en.removeFromParent()
             }
             else{
-                (self.childNode(withName: "mainChar") as! Character).lives -= 1
+                mc.lives -= 1
                 self.livesHelper -= 1
+                if(mc.isGoingRight){
+                    mc.physicsBody?.applyImpulse(CGVector(dx: -20.0, dy: 30.0))
+                }
+                else{
+                    //going left
+                    mc.physicsBody?.applyImpulse(CGVector(dx: 20.0, dy: 30.0))
+
+                }
             }
         }
         else if node.name == "powerItem"{
@@ -661,6 +654,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
             box.physicsBody?.contactTestBitMask = 0
             box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            if((box as! PlatformBox).isQuestion){
+                (box as! PlatformBox).powerType = "Immunity"
+            }
         }
         
         
