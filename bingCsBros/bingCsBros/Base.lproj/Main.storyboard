@@ -499,10 +499,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4sT-hc-BZe"/>
         <segue reference="DVP-k4-Xt1"/>
         <segue reference="0Ib-jd-ti3"/>
-        <segue reference="cy7-RP-Gsk"/>
+        <segue reference="pbc-yn-Ln5"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PassedLevelLogo" width="544" height="220"/>

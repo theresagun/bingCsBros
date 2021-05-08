@@ -303,20 +303,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for t in touches { self.touchUp(atPoint: t.location(in: self)) }
     }
     
-    
     override func update(_ currentTime: TimeInterval) {
-        print("Hello from update")
+        //print("Hello from update")
         if(mainChar==nil) {
             print("mainchar not nil")
         }
+        var timeInterval = 0
+
         // Called before each frame is rendered
         //NSLog("%f", mainChar.position.x)
         if(mainChar.position.x < -400){
             NSLog("Out of screen")
             self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
-            mainChar.position.x = 0
+            mainChar.position.x = 10000
+            //timeInterval = 0
         }
-        var timeInterval = 0
         if(level == 1 ){
             timeInterval = playLevel1()
         } //end of if level  == 1

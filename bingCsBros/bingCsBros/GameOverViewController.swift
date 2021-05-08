@@ -16,6 +16,7 @@ class GameOverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         //TODO: set finalScoreLabel to contain actual score
         scoreboard = ScoreboardDatabase.fetchScoreboard()
         if(scoreboard!.count == 0 ){
@@ -43,5 +44,11 @@ class GameOverViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
 
 }
