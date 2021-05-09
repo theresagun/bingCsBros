@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bgi-iD-a9H">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Ib-ak-N8X">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -22,6 +22,7 @@
                     <connections>
                         <segue destination="byX-8a-i5D" kind="show" identifier="gameToWin" id="iwD-1U-GZt"/>
                         <segue destination="n21-9N-zFV" kind="show" identifier="gameToLose" id="4sT-hc-BZe"/>
+                        <segue destination="WsL-j4-hnt" kind="show" identifier="gameToCompleted" id="4aJ-oP-bM2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
@@ -390,7 +391,7 @@
             <objects>
                 <viewController id="WsL-j4-hnt" customClass="CompletedGameViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7b9-cY-vRV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="congratsGreen" translatesAutoresizingMaskIntoConstraints="NO" id="ajw-K5-2aH">
@@ -471,6 +472,7 @@
                         <viewLayoutGuide key="safeArea" id="3Vi-XM-gnu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="umy-uE-zn1"/>
                     <connections>
                         <outlet property="finalScoreLabel" destination="QIk-BL-LTt" id="min-2o-do9"/>
                     </connections>
@@ -501,7 +503,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="DVP-k4-Xt1"/>
         <segue reference="0Ib-jd-ti3"/>
-        <segue reference="pbc-yn-Ln5"/>
+        <segue reference="cy7-RP-Gsk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PassedLevelLogo" width="544" height="220"/>

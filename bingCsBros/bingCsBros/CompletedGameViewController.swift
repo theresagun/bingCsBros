@@ -31,6 +31,12 @@ class CompletedGameViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+
 
     @IBAction func clickPlayAgainButton(sender: UIButton){
             //TODO: set score back to 0

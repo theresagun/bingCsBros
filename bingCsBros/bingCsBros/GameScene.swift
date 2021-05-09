@@ -13,8 +13,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var good:Bool = false
     var startOfLevel = DispatchTime.now()
-    var level : Int = 1 //make this persistent
+    var level : Int = 3 //make this persistent
     var intervalsUsed : [Int] = []
+    var intervalsForScoreUsed : [Int] = []
     var notOnScreen : [String] = []
     var collected : [SKNode] = []
     var score : Int = 0
@@ -47,8 +48,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             //reset level and score
-           // ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
-            //ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLevel(newLevel: 3, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             score = scoreboard[0].value(forKey: "score") as! Int
             level = scoreboard[0].value(forKey: "level") as! Int
             lives = scoreboard[0].value(forKey: "lives") as! Int
@@ -63,7 +64,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: self.frame.minX, y: self.frame.midY-165), size: self.frame.size))
         self.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue //ground acts as a obstacle
         
+        
+        
         mainChar = Character(x: 0, y: 0, img: ((self.viewCtrl as! GameViewController).characterImage!))
+        //mainChar = Character(x: 0, y: 0, img: UIImage(named: "Baxter")!)
         mainChar.zPosition = 1
         mainChar.name = "mainChar"
         
@@ -140,7 +144,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ScoreboardDatabase.updateLives(newLives: Int64(self.livesHelper!), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
 //            (self.viewCtrl as! GameViewController).score = self.score
 //            (self.viewCtrl as! GameViewController).level = self.level
-            self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
+            if(level == 4 ){
+                self.viewCtrl?.performSegue(withIdentifier: "gameToCompleted", sender: self)
+
+            }
+            else {
+                self.viewCtrl?.performSegue(withIdentifier: "gameToWin", sender: self)
+            }
             //update score and level, set lives back to 3
             
         }
@@ -318,7 +328,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             timeInterval = playLevel2()
         } //end of if level == 2
         
-        self.score += Int(timeInterval)
+        else if(level == 3){
+            timeInterval = playLevel3()
+        }
+        
+        if(intervalsForScoreUsed.contains(Int(timeInterval)) == false){
+            self.score += 1
+            intervalsForScoreUsed.append(Int(timeInterval))
+        }
+        
+
         moveBackground()
         moveNodesWithBackground()
         updateLabels()
@@ -428,6 +447,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         collectible2.physicsBody?.categoryBitMask = collisionTypes.collectible.rawValue
         collectible2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
         collectible2.physicsBody?.collisionBitMask = 0
+        
+        
+        
+        
         
         
         let endFlag = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "endFlag", typeOfObstacles: "idk?", id: 8)
@@ -746,9 +769,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if(Int(timeInterval) == 10 && intervalsUsed.contains(Int(timeInterval)) == false){
             intervalsUsed.append(Int(timeInterval))
-//                for node in platform1{
-//                    addChild(node)
-//                }
+                for node in platform1{
+                    addChild(node)
+                }
            
         }
         
@@ -905,6 +928,401 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.notOnScreen.append(enemy8.description)
             addChild(endFlag)
+        }
+        
+      return Int(timeInterval)
+    }
+    
+    
+    
+    func playLevel3() -> Int {
+        backgroundImage = "g7" //TODO: change this
+        //declare all enemies/obstacles
+        let enemy1 = Enemy(x: Int(self.frame.maxY) - 450 , y: (Int(self.frame.minX) / 4) - 30 , img: "madden-1", typeOfEnemy: "goomba", id: 1)
+        enemy1.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy1.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy1.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        let platform1 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 5, numQBoxes: 0)
+        for box in platform1{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        }
+        
+        let enemy2 = Enemy(x: Int(self.frame.maxY) - 300  , y:  50 , img: "head", typeOfEnemy: "fly", id: 2)
+        enemy2.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy2.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+      
+       
+        let platform2 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 50, numBoxes: 5, numQBoxes: 1)
+        for box in platform2{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            if((box as! PlatformBox).isQuestion){
+                (box as! PlatformBox).powerType = "Immunity"
+            }
+        }
+        
+        let obstacle1 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "desk", typeOfObstacles: "idk?", id: 3)
+        obstacle1.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+        
+        let enemy3 = Enemy(x: Int(self.frame.maxY) - 300  , y:  50 , img: "weinschenk", typeOfEnemy: "thwomp", id: 3)
+        enemy3.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy3.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy3.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        
+        let obstacle2 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "chair", typeOfObstacles: "idk?", id: 3)
+        obstacle2.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+        
+        
+        
+        //collectable on playform 7
+        let platform3 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: -50 , numBoxes: 4, numQBoxes: 0) //come out ebfore 6
+        for box in platform3{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        }
+        
+        let platform4 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 150 , y: Int(self.frame.maxX / 2) - 150, numBoxes: 4, numQBoxes: 0)
+        for box in platform4{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        }
+        
+        
+        //collectable on platform4
+        let collectible1 = Collectable(x: Int(self.frame.maxY) - 105, y: Int(self.frame.maxX / 2) - 120, img: "stackOverflowLogo")
+        collectible1.physicsBody?.categoryBitMask = collisionTypes.collectible.rawValue
+        collectible1.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        collectible1.physicsBody?.collisionBitMask = 0
+        
+        
+        let enemy4 = Enemy(x: Int(self.frame.maxY) - 300 , y:  Int(self.frame.maxX / 2) - 150 , img: "lander", typeOfEnemy: "fly", id: 4)
+        enemy4.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy4.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy4.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        let enemy5 = Enemy(x: Int(self.frame.maxY) - 300 , y: (Int(self.frame.minX) / 4) - 30 , img: "moore", typeOfEnemy: "goomba", id: 5)
+        enemy5.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy5.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy5.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        
+        let obstacle3 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "desk", typeOfObstacles: "idk?", id: 3)
+        obstacle3.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+        
+        let platform5 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: -50, numBoxes: 4, numQBoxes: 1)
+        for box in platform5{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+            if((box as! PlatformBox).isQuestion){
+                (box as! PlatformBox).powerType = "SpeedBoost"
+            }
+        }
+        
+        let enemy6 = Enemy(x: Int(self.frame.maxY) - 300  , y:  50 , img: "umrigar", typeOfEnemy: "thwomp", id: 6)
+        enemy6.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy6.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy6.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        
+       
+        //platform with goomba underneath and obstacle on platform
+        
+        let platform6 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: -50, numBoxes: 8, numQBoxes: 0)
+        for box in platform6{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        }
+        
+        //below platform
+        let enemy7 = Enemy(x: Int(self.frame.maxY) - 235 , y: (Int(self.frame.minX) / 4) - 30 , img: "madden-1", typeOfEnemy: "goomba", id: 7)
+        enemy7.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy7.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy7.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+            //on platform
+        
+        let obstacle4 = Obstacles(x: Int(self.frame.maxY) - 240, y: -50 + 30, img: "desk", typeOfObstacles: "idk?", id: 4)
+        obstacle4.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+        
+        
+        
+        //obstacle before flying enemy to jump on
+        let obstacle5 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "chair", typeOfObstacles: "idk?", id: 5)
+        obstacle5.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+        
+        let enemy8 = Enemy(x: Int(self.frame.maxY) - 300 , y: (Int(self.frame.minX) / 4) + 190, img: "head", typeOfEnemy: "fly", id: 8)
+        enemy8.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy8.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy8.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        
+        let platform7 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 150 , y:  50, numBoxes: 4, numQBoxes: 0)
+        for box in platform7{
+            box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
+            box.physicsBody?.contactTestBitMask = 0
+            box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        }
+        
+        
+        //collectable on platform4
+        let collectible2 = Collectable(x: Int(self.frame.maxY) - 105, y: 80, img: "stackOverflowLogo")
+        collectible2.physicsBody?.categoryBitMask = collisionTypes.collectible.rawValue
+        collectible2.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        collectible2.physicsBody?.collisionBitMask = 0
+        
+        
+        let enemy9 = Enemy(x: Int(self.frame.maxY) - 300 , y:  Int(self.frame.maxX / 2) - 125 , img: "lander", typeOfEnemy: "fly", id: 4)
+        enemy9.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
+        enemy9.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        enemy9.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        
+        let endFlag = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "endFlag", typeOfObstacles: "idk?", id: 8)
+        endFlag.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
+        endFlag.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
+        endFlag.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        
+        
+        endFlag.name = "flag"
+        endFlag.size.width = 300
+        endFlag.size.height = self.frame.maxY / 4
+        
+        
+        let now = DispatchTime.now()
+        let nanoTime = now.uptimeNanoseconds - startOfLevel.uptimeNanoseconds // Difference in nano seconds
+        let timeInterval = Double(nanoTime) / 1_000_000_000
+        if(Int(timeInterval) == 1 && intervalsUsed.contains(Int(timeInterval)) == false ){
+            intervalsUsed.append(Int(timeInterval))
+            enemy1.zPosition = 1
+            addChild(enemy1)
+            
+            
+        
+        }
+        if(Int(timeInterval) == 7 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            for node in platform1{
+                addChild(node)
+            }
+           
+        }
+        
+        if(Int(timeInterval) == 10 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            addChild(enemy2)
+        }
+    
+        
+        
+        
+        if(Int(timeInterval) == 17 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            self.notOnScreen.append(enemy1.description)
+            removeEnemy()
+            
+            for node in platform2{
+                addChild(node)
+            }
+            
+            
+        }
+        
+        if(Int(timeInterval) == 24 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            addChild(obstacle1)
+            
+            self.notOnScreen.append(enemy2.description)
+            removeEnemy()
+            for node in platform2{
+                self.notOnScreen.append(node.description)
+            }
+            removePlatform()
+            
+        }
+        
+        
+        if(Int(timeInterval) == 27 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+           
+            addChild(enemy3)
+           
+            
+        }
+        
+        if(Int(timeInterval) == 29 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+           
+            addChild(obstacle2)
+            for node in platform2{
+                self.notOnScreen.append(node.description)
+            }
+            removePlatform()
+            
+            
+        }
+        
+        if(Int(timeInterval) == 38 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            for node in platform3{
+                addChild(node)
+            }
+            for node in platform4{
+                addChild(node)
+            }
+            addChild(collectible1)
+            
+            self.notOnScreen.append(enemy3.description)
+            removeEnemy()
+            self.notOnScreen.append(obstacle1.description)
+            removeObstacle()
+            
+            
+            
+        }
+        
+        if(Int(timeInterval) == 44 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            addChild(enemy4)
+            self.notOnScreen.append(obstacle2.description)
+            removeObstacle()
+            
+        }
+        
+        if(Int(timeInterval) == 49 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            addChild(enemy5)
+            
+            
+        }
+        
+        if(Int(timeInterval) == 53 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            addChild(obstacle3)
+            
+            for node in platform3{
+                self.notOnScreen.append(node.description)
+            }
+            for node in platform4{
+                self.notOnScreen.append(node.description)
+            }
+            removePlatform()
+            self.notOnScreen.append(collectible1.description)
+            
+            
+
+        }
+        
+        if(Int(timeInterval) == 56 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+           
+            for node in platform5{
+                addChild(node)
+            }
+        }
+
+        
+        
+        if(Int(timeInterval) == 60 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            addChild(enemy6)
+            self.notOnScreen.append(enemy4.description)
+            removeEnemy()
+          
+        }
+        
+        if(Int(timeInterval) == 65 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            addChild(enemy7)
+            addChild(obstacle4)
+            for node in platform6{
+                addChild(node)
+            }
+            
+            self.notOnScreen.append(enemy5.description)
+            removeEnemy()
+          
+        }
+        
+        if(Int(timeInterval) == 72 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+           print("adding obstacle 5")
+           
+           self.notOnScreen.append(obstacle3.description)
+           removeObstacle()
+           addChild(obstacle5)
+    
+        }
+        
+        if(Int(timeInterval) == 74 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+           addChild(enemy8)
+            
+            
+        }
+        
+        if(Int(timeInterval) == 79 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            for node in platform5{
+                self.notOnScreen.append(node.description)
+            }
+            removePlatform()
+            
+            self.notOnScreen.append(enemy6.description)
+            removeEnemy()
+            
+            for node in platform7{
+                addChild(node)
+            }
+            addChild(collectible2)
+            
+        }
+        
+        if(Int(timeInterval) == 84 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            self.notOnScreen.append(enemy7.description)
+            removeEnemy()
+            self.notOnScreen.append(obstacle5.description)
+            removeObstacle()
+            for node in platform6{
+                self.notOnScreen.append(node.description)
+            }
+            removePlatform()
+            
+           addChild(enemy9)
+           
+        }
+        
+        
+        if(Int(timeInterval) == 88 && intervalsUsed.contains(Int(timeInterval)) == false){
+            intervalsUsed.append(Int(timeInterval))
+            
+            
+            self.notOnScreen.append(obstacle5.description)
+            removeObstacle()
+            
+           addChild(endFlag)
+           
         }
         
       return Int(timeInterval)
