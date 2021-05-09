@@ -61,7 +61,7 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
         //crop self.img to be a circle
         makeRoundImg()
         //combine this image with a stick figure with no head
-        let bottomImage = UIImage(named: "stickFigure.png")
+        let bottomImage = UIImage(named: "baxter")
         let topImage = self.img
         
         let size = CGSize(width: 100, height: 150)
@@ -70,7 +70,7 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
 
         var areaSize = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         bottomImage!.draw(in: areaSize)
-        areaSize = CGRect(x: size.width/3, y: 0, width: size.width/3, height: size.height/4)
+        areaSize = CGRect(x: size.width/7, y: 5, width: size.width*(0.7), height: size.height*(0.55))
         topImage!.draw(in: areaSize, blendMode: .normal, alpha: 1.0)
 
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
