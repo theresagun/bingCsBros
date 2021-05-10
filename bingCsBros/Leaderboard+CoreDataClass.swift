@@ -13,3 +13,6 @@ import CoreData
 public class Leaderboard: NSManagedObject {
 
 }
+
+
+//update leaderboard in the you completed the game aprt

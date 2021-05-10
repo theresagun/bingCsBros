@@ -148,7 +148,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //            (self.viewCtrl as! GameViewController).level = self.level
             if(level == 4 ){
                 //passed level 3 : Completed the game
-                checkIfNewScoreOnLeaderboard()
+                //checkIfNewScoreOnLeaderboard()
                 self.viewCtrl?.performSegue(withIdentifier: "gameToCompleted", sender: self)
 
             }
@@ -351,34 +351,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         checkChar()
     }
     
-    func checkIfNewScoreOnLeaderboard() -> Bool{
-        
-        let scoresString = leaderboard[0].value(forKey: "top5Scores") as! String
-        var scores = scoresString.components(separatedBy: ",")
-        let scoresInt =  scores.map { Int($0)!}
-        var indexOfNewScore = -1
-        for i in stride(from: scoresInt.count - 1, to: 0, by: -1) {
-            if(score > scoresInt[i] ){
-                indexOfNewScore = i
-            }
-        }
-        
-        if(indexOfNewScore != -1 ){
-            print("new high score!")
-            scores.insert(String(score), at: indexOfNewScore)
-            scores.removeLast()
-            let scoreStringUpdated = (scores.map{String($0)}).joined(separator: ",")
-            
-            //insert new value at i and remove last value
-            LeaderboardDatabase.updateTop5(newList: scoreStringUpdated , leaderboardToUpdate: leaderboard[0] as! Leaderboard)
-            return true
-        }
-        
-        return false
-        
-       
-        
-    }
+//    func checkIfNewScoreOnLeaderboard() -> Bool{
+//
+//        let scoresString = leaderboard[0].value(forKey: "top5Scores") as! String
+//        var scores = scoresString.components(separatedBy: ",")
+//        let scoresInt =  scores.map { Int($0)!}
+//        var indexOfNewScore = -1
+//        for i in stride(from: scoresInt.count - 1, to: 0, by: -1) {
+//            if(score > scoresInt[i] ){
+//                indexOfNewScore = i
+//            }
+//        }
+//
+//        if(indexOfNewScore != -1 ){
+//            print("new high score!")
+//            scores.insert(String(score), at: indexOfNewScore)
+//            scores.removeLast()
+//            let scoreStringUpdated = (scores.map{String($0)}).joined(separator: ",")
+//
+//            //insert new value at i and remove last value
+//            LeaderboardDatabase.updateTop5(newList: scoreStringUpdated , leaderboardToUpdate: leaderboard[0] as! Leaderboard)
+//            return true
+//        }
+//
+//        return false
+//
+//
+//
+//    }
     
     func checkChar(){
         let mc = (self.childNode(withName: "mainChar") as! Character)
