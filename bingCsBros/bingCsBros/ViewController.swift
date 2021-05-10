@@ -6,7 +6,8 @@
 //
 
 import UIKit
-
+import CoreData
+//Leaderboard
 class ViewController: UIViewController {
     
     @IBOutlet var tableView : UITableView!
@@ -14,17 +15,32 @@ class ViewController: UIViewController {
 
     //var sortedNames = sorted(scores, <)
 
-    let scores: Set = [14, 12, 17, 2, 36]
+    //let scores: Set = [14, 12, 17, 2, 36]
 
-
-
+    var scores: [String] = []
+    var leaderboard: [NSManagedObject]?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         
-
+        
+        leaderboard = LeaderboardDatabase.fetchLeaderboard()
+        if(leaderboard!.count == 0 ){
+            print("SAVING LEADERBOARD 1ST TIME")
+            leaderboard = LeaderboardDatabase.saveFirstLeaderboard()
+        }
+        else{
+            let scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+            scores = scoresString.components(separatedBy: ",")
+            print(scores)
+            
+        }
+        
+        
+        
         // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = false
     }

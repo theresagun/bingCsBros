@@ -25,3 +25,5 @@ extension Scoreboard {
 extension Scoreboard : Identifiable {
 
 }
+
+//can have array of the top 5 and then put in new value, sort it, and use index of new value to determine new place
