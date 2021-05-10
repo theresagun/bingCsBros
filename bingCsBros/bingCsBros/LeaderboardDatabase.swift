@@ -76,7 +76,7 @@ class LeaderboardDatabase{
         let leaderboard = NSManagedObject(entity: entity,
                                      insertInto: managedContext)
         
-        leaderboard.setValue("0,0,0,0,0", forKeyPath: "top5Scores")
+        leaderboard.setValue("0,0,0,0,0,0,0,0,0,0", forKeyPath: "top5Scores")
         
         do {
           try managedContext.save()

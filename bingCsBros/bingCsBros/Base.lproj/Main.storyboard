@@ -37,8 +37,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3o-ee-8Dr">
-                                <rect key="frame" x="25" y="75" width="364" height="708"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w3o-ee-8Dr">
+                                <rect key="frame" x="30" y="201" width="364" height="493"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="N94-JK-KSu">
@@ -51,22 +52,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="leaderboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tbi-VV-jhb">
-                                <rect key="frame" x="161" y="88" width="92" height="67"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="leaderboard" translatesAutoresizingMaskIntoConstraints="NO" id="hTY-Ua-ZcS">
+                                <rect key="frame" x="25" y="82" width="369" height="111"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JtQ-tF-2vM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="w3o-ee-8Dr" firstAttribute="leading" secondItem="JtQ-tF-2vM" secondAttribute="leading" constant="25" id="TsN-TR-bqJ"/>
-                            <constraint firstItem="w3o-ee-8Dr" firstAttribute="top" secondItem="JtQ-tF-2vM" secondAttribute="top" constant="75" id="YBL-gE-j5H"/>
-                            <constraint firstItem="JtQ-tF-2vM" firstAttribute="bottom" secondItem="w3o-ee-8Dr" secondAttribute="bottom" constant="25" id="YzQ-AW-X0l"/>
-                            <constraint firstItem="JtQ-tF-2vM" firstAttribute="trailing" secondItem="w3o-ee-8Dr" secondAttribute="trailing" constant="25" id="yJe-7m-eiX"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Tkc-t7-Ke1"/>
                     <connections>
@@ -166,13 +158,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibj-eu-D97">
-                                <rect key="frame" x="186" y="310" width="90" height="21"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="instructions" translatesAutoresizingMaskIntoConstraints="NO" id="tvm-MC-xB5">
+                                <rect key="frame" x="20" y="119" width="374" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hWB-BU-jBf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -181,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2wk-b4-AC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-970" y="-837"/>
+            <point key="canvasLocation" x="-971.01449275362324" y="-837.05357142857144"/>
         </scene>
         <!--Character View Controller-->
         <scene sceneID="Isr-XE-Hxk">
@@ -553,6 +542,8 @@
         <image name="congratsGreen" width="489" height="133"/>
         <image name="gameOverLogo" width="468" height="96"/>
         <image name="harveyDiploma" width="358" height="672"/>
+        <image name="instructions" width="788" height="172"/>
+        <image name="leaderboard" width="623" height="101"/>
         <image name="logo" width="418" height="245"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
