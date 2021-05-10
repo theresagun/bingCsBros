@@ -119,6 +119,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             else{
                 mc.lives -= 1
+                
+                if(mc.lives < 0){
+                    NSLog("Out of lives")
+                    self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
+                    mc.lives = 100
+                    mainChar.position.x = 10000
+                    //timeInterval = 0
+                }
+                
                 self.livesHelper -= 1
                 if(mc.isGoingRight){
                     mc.physicsBody?.applyImpulse(CGVector(dx: -20.0, dy: 30.0))
