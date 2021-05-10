@@ -88,6 +88,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if(level == 2){
             backgroundImage = "g7"
         }
+        else if (level == 3){
+            backgroundImage = "office"
+        }
         setUpLabels()
         createBackground()
     }
