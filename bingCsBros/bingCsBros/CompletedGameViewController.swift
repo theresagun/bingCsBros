@@ -8,12 +8,13 @@
 import UIKit
 import CoreData
 
-class CompletedGameViewController: UIViewController {
+class CompletedGameViewController: UIViewController{
 
     @IBOutlet var finalScoreLabel: UILabel!
     @IBOutlet var nameTextField: UITextField!
     @IBOutlet var submitButton: UIButton!
     @IBOutlet var madeToLeaderboard: UILabel!
+    
 
 
     var scoreDB: Int?
@@ -55,7 +56,7 @@ class CompletedGameViewController: UIViewController {
     
 
     func checkIfNewScoreOnLeaderboard() -> Bool{
-        
+        print("checking if score on leaderboard")
         let scoresString = leaderboard![0].value(forKey: "top5Scores") as! String
         var scores = scoresString.components(separatedBy: ",")
         let scoresInt =  scores.map { Int($0)!}
@@ -110,6 +111,7 @@ class CompletedGameViewController: UIViewController {
     
     @IBAction func submitName(sender: UIButton){
             //TODO: set score back to 0
+        print("submitting name")
         addNewScoreOnLeaderboard()
         nameTextField.text = ""
         }
@@ -117,6 +119,7 @@ class CompletedGameViewController: UIViewController {
 
     @IBAction func clickPlayAgainButton(sender: UIButton){
             //TODO: set score back to 0
+        print("play again")
         ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard![0] as! Scoreboard)
         ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard![0] as! Scoreboard)
         }

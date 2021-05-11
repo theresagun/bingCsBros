@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             //reset level and score
-            ScoreboardDatabase.updateLevel(newLevel: 3, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLevel(newLevel: 2, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             score = scoreboard[0].value(forKey: "score") as! Int
             level = scoreboard[0].value(forKey: "level") as! Int
@@ -830,6 +830,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemy1.zPosition = 1
             addChild(enemy1)
             
+            addChild(endFlag)
             
             //delete from
             
@@ -1175,7 +1176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemy1.zPosition = 1
             addChild(enemy1)
             
-           // addChild(endFlag)
+            addChild(endFlag)
         
         }
         if(Int(timeInterval) == 7 && intervalsUsed.contains(Int(timeInterval)) == false){
