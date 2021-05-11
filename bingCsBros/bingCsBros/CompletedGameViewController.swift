@@ -19,6 +19,8 @@ class CompletedGameViewController: UIViewController{
 
     var scoreDB: Int?
     var levelDB: Int?
+    var scoresString: String?
+    var namesString: String?
     var scoreboard: [NSManagedObject]?
     var leaderboard: [NSManagedObject]?
     
@@ -28,6 +30,8 @@ class CompletedGameViewController: UIViewController{
         //TODO: set finalScoreLabel to contain actual score
         scoreboard = ScoreboardDatabase.fetchScoreboard()
         leaderboard = LeaderboardDatabase.fetchLeaderboard()
+        print("leaderboard")
+        print(leaderboard)
         if(scoreboard!.count == 0 ){
             print("SAVING SCOREBOARD 1ST TIME")
             scoreboard = ScoreboardDatabase.saveFirstScoreboard()
@@ -35,12 +39,26 @@ class CompletedGameViewController: UIViewController{
         else{
             scoreDB = scoreboard?[0].value(forKey: "score") as! Int
         }
+        
+        
+        
+        if(leaderboard!.count == 0 ){
+            print("SAVING LEADERBOARD 1ST TIME")
+            leaderboard = LeaderboardDatabase.saveFirstLeaderboard()
+        }
+        
+        else {
+            scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+            namesString = leaderboard?[0].value(forKey: "topNames") as! String
+        }
+        
         finalScoreLabel.text = "Final Score: " + String(scoreDB!)
         let onLeaderboard = checkIfNewScoreOnLeaderboard()
         if(onLeaderboard) {
             submitButton.isHidden = false
             nameTextField.isHidden = false
             madeToLeaderboard.isHidden = false
+            print("on leaderboard")
         }
         
 
@@ -57,20 +75,26 @@ class CompletedGameViewController: UIViewController{
 
     func checkIfNewScoreOnLeaderboard() -> Bool{
         print("checking if score on leaderboard")
-        let scoresString = leaderboard![0].value(forKey: "top5Scores") as! String
-        var scores = scoresString.components(separatedBy: ",")
+//        let scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+        print("past scores string")
+        var scores = scoresString!.components(separatedBy: ",")
         let scoresInt =  scores.map { Int($0)!}
         var indexOfNewScore = -1
-        for i in stride(from: scoresInt.count - 1, to: 0, by: -1) {
+        print("ab to go through loop")
+        for i in stride(from: scoresInt.count - 1, to: -1, by: -1) {
+            print("in loop " + String(i))
             if(scoreDB! > scoresInt[i] ){
                 indexOfNewScore = i
             }
         }
         
+        print("got through loop")
+
         if(indexOfNewScore != -1 ){
+            print("returning")
             return true
         }
-        
+        print("returning")
         return false
         
        
@@ -79,10 +103,10 @@ class CompletedGameViewController: UIViewController{
     
     func addNewScoreOnLeaderboard(){
         
-        let scoresString = leaderboard![0].value(forKey: "top5Scores") as! String
-        let namesString = leaderboard![0].value(forKey: "topNames") as! String
-        var scores = scoresString.components(separatedBy: ",")
-        var names = namesString.components(separatedBy: ",")
+//        let scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+//        let namesString = leaderboard?[0].value(forKey: "topNames") as! String
+        var scores = scoresString!.components(separatedBy: ",")
+        var names = namesString!.components(separatedBy: ",")
         let scoresInt =  scores.map { Int($0)!}
         var indexOfNewScore = -1
         for i in stride(from: scoresInt.count - 1, to: -1, by: -1) {
@@ -90,7 +114,7 @@ class CompletedGameViewController: UIViewController{
                 indexOfNewScore = i
             }
         }
-        
+        print("going to add")
         
         if(indexOfNewScore != -1 ){
             print("new high score!")
@@ -102,7 +126,7 @@ class CompletedGameViewController: UIViewController{
             let nameStringUpdated  = (names.map{String($0)}).joined(separator: ",")
             
             //insert new value at i and remove last value
-            LeaderboardDatabase.updateTop5(newList: scoreStringUpdated, newNames: nameStringUpdated, leaderboardToUpdate: leaderboard![0] as! Leaderboard)
+            LeaderboardDatabase.updateTop5(newList: scoreStringUpdated, newNames: nameStringUpdated, leaderboardToUpdate: leaderboard?[0] as! Leaderboard)
         }
                 
        

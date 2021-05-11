@@ -24,8 +24,8 @@ class LeaderboardDatabase{
         
 
         do {
-          let scoreboard = try managedContext.fetch(fetchRequest)
-          return scoreboard
+          let leaderboard = try managedContext.fetch(fetchRequest)
+          return leaderboard
         } catch let error as NSError {
           print("Could not fetch. \(error), \(error.userInfo)")
         }

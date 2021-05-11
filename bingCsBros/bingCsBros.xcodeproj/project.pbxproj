@@ -39,7 +39,7 @@
 		446606002648A26400A219D0 /* Leaderboard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446605FE2648A26400A219D0 /* Leaderboard+CoreDataProperties.swift */; };
 		446606022648A2DC00A219D0 /* LeaderboardDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446606012648A2DC00A219D0 /* LeaderboardDatabase.swift */; };
 		44FD4588264B3D4300E0827B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD4587264B3D4300E0827B /* HomeViewController.swift */; };
-		44FD458B264B440700E0827B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44FD4589264B440700E0827B /* DataModel.xcdatamodeld */; };
+		44FD458E264B47EA00E0827B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44FD458C264B47EA00E0827B /* DataModel.xcdatamodeld */; };
 		7907592F2642E5E100766DA2 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907592E2642E5E000766DA2 /* GameOverViewController.swift */; };
 		796E9BDF263662A30084A130 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E9BDE263662A30084A130 /* ViewController.swift */; };
 		79B3E4702629390100EE2316 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E46F2629390100EE2316 /* Enemy.swift */; };
@@ -102,7 +102,7 @@
 		446605FE2648A26400A219D0 /* Leaderboard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		446606012648A2DC00A219D0 /* LeaderboardDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDatabase.swift; sourceTree = "<group>"; };
 		44FD4587264B3D4300E0827B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		44FD458A264B440700E0827B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		44FD458D264B47EA00E0827B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		7907592E2642E5E000766DA2 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		796E9BDE263662A30084A130 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79B3E46F2629390100EE2316 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -161,7 +161,6 @@
 		344AE1A42624927D00EC6BAC /* bingCsBros */ = {
 			isa = PBXGroup;
 			children = (
-				44FD4589264B440700E0827B /* DataModel.xcdatamodeld */,
 				344AE1A52624927D00EC6BAC /* AppDelegate.swift */,
 				4419901026443E0500C9D26C /* ScoreboardDatabase.swift */,
 				446606012648A2DC00A219D0 /* LeaderboardDatabase.swift */,
@@ -179,6 +178,7 @@
 				79B3E47426293A4B00EE2316 /* Obstacles.swift */,
 				347CB74F262736D200E9C464 /* Character.swift */,
 				2C494D6B262F51B4008EC632 /* PlatformBox.swift */,
+				44FD458C264B47EA00E0827B /* DataModel.xcdatamodeld */,
 				2C494D5C262F460B008EC632 /* Collectable.swift */,
 				2C494D61262F4AF7008EC632 /* PowerItem.swift */,
 				344AE1B22624927E00EC6BAC /* Assets.xcassets */,
@@ -366,7 +366,7 @@
 				344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */,
 				4419901626444F7C00C9D26C /* CompletedGameViewController.swift in Sources */,
 				796E9BDF263662A30084A130 /* ViewController.swift in Sources */,
-				44FD458B264B440700E0827B /* DataModel.xcdatamodeld in Sources */,
+				44FD458E264B47EA00E0827B /* DataModel.xcdatamodeld in Sources */,
 				446606002648A26400A219D0 /* Leaderboard+CoreDataProperties.swift in Sources */,
 				446606022648A2DC00A219D0 /* LeaderboardDatabase.swift in Sources */,
 				79B3E47526293A4B00EE2316 /* Obstacles.swift in Sources */,
@@ -705,12 +705,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		44FD4589264B440700E0827B /* DataModel.xcdatamodeld */ = {
+		44FD458C264B47EA00E0827B /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				44FD458A264B440700E0827B /* DataModel.xcdatamodel */,
+				44FD458D264B47EA00E0827B /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 44FD458A264B440700E0827B /* DataModel.xcdatamodel */;
+			currentVersion = 44FD458D264B47EA00E0827B /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
