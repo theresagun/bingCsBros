@@ -13,18 +13,32 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
     var circlePath = UIBezierPath()
     
     @IBOutlet var displayImg: UIImageView!
+    @IBOutlet var customButton: UIButton!
+    @IBOutlet var defaultButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.navigationController?.isNavigationBarHidden = false
+        
+        self.img = UIImage(named: "baxter")
+        self.displayImg.image = self.img
+        self.displayImg.setNeedsDisplay()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if(img == nil){
-            prepCamera()
-        }
+
+    }
+    
+    @IBAction func clickedCustomize(button: UIButton){
+        prepCamera()
+    }
+    
+    @IBAction func clickedDefault(button: UIButton){
+        self.img = UIImage(named: "baxter")
+        self.displayImg.image = self.img
+        self.displayImg.setNeedsDisplay()
     }
     
     func prepCamera(){
@@ -38,6 +52,8 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
         }
         else {
             self.img = UIImage(named:"baxter")
+            self.displayImg.image = self.img
+            self.displayImg.setNeedsDisplay()
         }
     }
         
@@ -51,8 +67,6 @@ class CharacterViewController: UIViewController, UINavigationControllerDelegate,
         
         //now image is the photo we just took
         self.img = image
-        // print out the image size as a test
-        print(image.size)
         //call a func to actually use this img
         createCharImg()
     }
