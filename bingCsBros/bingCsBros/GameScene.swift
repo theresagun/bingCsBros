@@ -118,6 +118,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else if(mc.hasImmunity){
                 en.removeFromParent()
             }
+            else if(en.typeOfEnemy == "thwomp" && mc.position.y <= en.position.y){
+                print("under thwomp")
+                //under th3weomp
+//                en.physicsBody?.isDynamic = false
+//                en.physicsBody?.affectedByGravity = false
+                en.upTime = true 
+                mc.lives -= 1
+                
+                if(mc.lives < 0){
+                    NSLog("Out of lives")
+                    self.view?.isPaused = true
+                    self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
+                    mc.lives = 100
+                    mainChar.position.x = 10000
+                    //timeInterval = 0
+                }
+                
+                self.livesHelper -= 1
+                
+                //TODO player is squished - jake?
+
+            }
             else{
                 mc.lives -= 1
                 
