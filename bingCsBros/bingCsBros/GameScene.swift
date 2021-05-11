@@ -1175,7 +1175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemy1.zPosition = 1
             addChild(enemy1)
             
-            
+           // addChild(endFlag)
         
         }
         if(Int(timeInterval) == 7 && intervalsUsed.contains(Int(timeInterval)) == false){

@@ -79,23 +79,29 @@ class CompletedGameViewController: UIViewController {
     func addNewScoreOnLeaderboard(){
         
         let scoresString = leaderboard![0].value(forKey: "top5Scores") as! String
+        let namesString = leaderboard![0].value(forKey: "topNames") as! String
         var scores = scoresString.components(separatedBy: ",")
+        var names = namesString.components(separatedBy: ",")
         let scoresInt =  scores.map { Int($0)!}
         var indexOfNewScore = -1
-        for i in stride(from: scoresInt.count - 1, to: 0, by: -1) {
+        for i in stride(from: scoresInt.count - 1, to: -1, by: -1) {
             if(scoreDB! > scoresInt[i] ){
                 indexOfNewScore = i
             }
         }
         
+        
         if(indexOfNewScore != -1 ){
             print("new high score!")
-            scores.insert(String(scoreDB!) + " - " + nameTextField.text!, at: indexOfNewScore)
+            scores.insert(String(scoreDB!), at: indexOfNewScore )
             scores.removeLast()
+            names.insert(nameTextField.text!, at: indexOfNewScore )
+            names.removeLast()
             let scoreStringUpdated = (scores.map{String($0)}).joined(separator: ",")
+            let nameStringUpdated  = (names.map{String($0)}).joined(separator: ",")
             
             //insert new value at i and remove last value
-            LeaderboardDatabase.updateTop5(newList: scoreStringUpdated , leaderboardToUpdate: leaderboard![0] as! Leaderboard)
+            LeaderboardDatabase.updateTop5(newList: scoreStringUpdated, newNames: nameStringUpdated, leaderboardToUpdate: leaderboard![0] as! Leaderboard)
         }
                 
        
