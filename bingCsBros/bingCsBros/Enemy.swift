@@ -69,7 +69,13 @@ class Enemy: SKSpriteNode {
         else if(typeOfEnemy == "thwomp"){
             //shake and drop, go back up
             self.moveBackward()
-            if(self.position.x <= self.ogX - 150){
+            if(self.position.x <= self.ogX - 300 && self.position.y <= self.ogY){
+                //go back up
+                self.physicsBody?.affectedByGravity = false
+                self.position.y += 1
+                self.physicsBody?.collisionBitMask = UInt32(1) //can now go through physics world
+            }
+            else if(self.position.x <= self.ogX - 150){
                 //time to drop
                 self.physicsBody?.isDynamic = true
                 self.physicsBody?.affectedByGravity = true
