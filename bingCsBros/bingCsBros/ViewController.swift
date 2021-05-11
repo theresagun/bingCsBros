@@ -88,7 +88,8 @@ extension ViewController: UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = stringArray[indexPath.row] + " - " + names[indexPath.row]
         cell.textLabel?.font = UIFont(name:"Avenir", size:22)
-       
+//        cell.textLabel?.textColor = UIColor.white
+
     
         return cell
     }
