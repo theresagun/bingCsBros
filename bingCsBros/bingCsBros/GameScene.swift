@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             //reset level and score
-            ScoreboardDatabase.updateLevel(newLevel: 3, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             score = scoreboard[0].value(forKey: "score") as! Int
             level = scoreboard[0].value(forKey: "level") as! Int
@@ -453,7 +453,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             box.physicsBody?.contactTestBitMask = 0
             box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             if((box as! PlatformBox).isQuestion){
-                print("\n\nHEREEEEEEEEEEEEEEEE\n\n")
                 (box as! PlatformBox).powerType = "SpeedBoost"
             }
         }
@@ -1510,11 +1509,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //self.addChild(platBox)
             platformBoxes.append(platBox)
         }
-        let q_x_coord = x + (numBoxes*img_width)
+        let q_x_coord = x + ((numBoxes+1)*img_width)
         let questionBox = PlatformBox(x:q_x_coord,y:y,isQ:true)
         //self.addChild(questionBox)
         if numQBoxes != 0 {
-            print("should jave qbox...")
             platformBoxes.append(questionBox)
         }
        // print("PLATFORM BOXES: " + platformBoxes.description)
