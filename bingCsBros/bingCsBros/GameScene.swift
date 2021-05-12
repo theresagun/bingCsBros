@@ -144,7 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else{
                 mc.lives -= 1
                 
-                if(mc.lives < 0){
+                if(mc.lives <= 0){
                     NSLog("Out of lives")
                     self.view?.isPaused = true
                     self.score = makeFinalScore()
