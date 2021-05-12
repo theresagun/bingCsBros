@@ -1490,7 +1490,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let q_x_coord = x + (numBoxes*img_width)
         let questionBox = PlatformBox(x:q_x_coord,y:y,isQ:true)
         //self.addChild(questionBox)
-        platformBoxes.append(questionBox)
+        if numQBoxes != 0 {
+            platformBoxes.append(questionBox)
+        }
        // print("PLATFORM BOXES: " + platformBoxes.description)
         return platformBoxes
     }
