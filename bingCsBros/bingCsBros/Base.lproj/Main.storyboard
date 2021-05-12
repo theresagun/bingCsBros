@@ -94,10 +94,10 @@
             </objects>
             <point key="canvasLocation" x="-371.01449275362324" y="716.51785714285711"/>
         </scene>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="JD3-Na-vR7">
             <objects>
-                <viewController id="bgi-iD-a9H" sceneMemberID="viewController">
+                <viewController id="bgi-iD-a9H" customClass="HomeViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AkP-3e-AuZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -175,10 +175,10 @@
             </objects>
             <point key="canvasLocation" x="-1036.231884057971" y="-64.285714285714278"/>
         </scene>
-        <!--View Controller-->
+        <!--Instructions View Controller-->
         <scene sceneID="d1i-2a-s5X">
             <objects>
-                <viewController id="oC0-1h-L9T" sceneMemberID="viewController">
+                <viewController id="oC0-1h-L9T" customClass="InstructionsViewController" customModule="bingCsBros" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Apc-jk-q5N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -738,9 +738,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="DVP-k4-Xt1"/>
+        <segue reference="8GP-9Y-Ia9"/>
         <segue reference="u0b-ql-j32"/>
-        <segue reference="0Ib-jd-ti3"/>
+        <segue reference="OBs-j1-N8z"/>
         <segue reference="pbc-yn-Ln5"/>
     </inferredMetricsTieBreakers>
     <resources>

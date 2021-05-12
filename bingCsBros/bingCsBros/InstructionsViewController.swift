@@ -1,25 +1,19 @@
 //
-//  HomeViewController.swift
+//  InstructionsViewController.swift
 //  bingCsBros
 //
-//  Created by Kate Baumstein on 5/11/21.
+//  Created by Theresa Gundel on 5/12/21.
 //
 
 import UIKit
-import CoreData
 
-class HomeViewController: UIViewController {
-
-    
+class InstructionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        //if a character image exists then delete it
-        //make a new one
-       // scoreDB = scoreboard?[0].value(forKey: "score") as! Int
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = false
 
     }
     
