@@ -482,7 +482,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Pn-eX-gmJ">
-                                <rect key="frame" x="78" y="569" width="258" height="49"/>
+                                <rect key="frame" x="78" y="590" width="258" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal">
@@ -500,7 +500,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OBQ-dx-tnX">
-                                <rect key="frame" x="78" y="654" width="258" height="49"/>
+                                <rect key="frame" x="78" y="653" width="258" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal">
@@ -520,7 +520,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yO5-nz-KDz">
-                                <rect key="frame" x="47" y="421" width="321" height="55"/>
+                                <rect key="frame" x="47" y="386" width="321" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Final Score:  &lt;num&gt; ">
@@ -533,6 +533,39 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3s-Pg-C1d">
+                                <rect key="frame" x="47" y="451" width="321" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="You made it on the leaderboard!">
+                                        <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <font key="NSFont" size="30" name="TimesNewRomanPS-BoldMT"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" placeholder="Enter your name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dZ3-Bq-m7H">
+                                <rect key="frame" x="83" y="524" width="182" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.77954473349999998" green="0.77954473349999998" blue="0.77954473349999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <attributedString key="attributedText"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nCg-i7-4PK">
+                                <rect key="frame" x="269" y="524" width="67" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.0" green="0.016383513419999999" blue="0.03711928934" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitNameWithSender:" destination="WsL-j4-hnt" eventType="touchUpInside" id="9zE-TM-aWA"/>
+                                    <action selector="submitNameWithSender:" destination="n21-9N-zFV" eventType="touchUpInside" id="VYd-rZ-xAj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="E9M-bp-6HZ"/>
                         <color key="backgroundColor" red="0.0" green="0.22068732612637776" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -540,6 +573,9 @@
                     <navigationItem key="navigationItem" id="l7P-ko-nRa"/>
                     <connections>
                         <outlet property="finalScoreLabel" destination="yO5-nz-KDz" id="0Rl-Fg-63G"/>
+                        <outlet property="madeToLeaderboard" destination="D3s-Pg-C1d" id="k4w-qM-he1"/>
+                        <outlet property="nameTextField" destination="dZ3-Bq-m7H" id="h8Z-oj-uii"/>
+                        <outlet property="submitButton" destination="nCg-i7-4PK" id="aJu-57-0kg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hm-xi-MDm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -702,9 +738,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="8IE-id-CGX"/>
+        <segue reference="DVP-k4-Xt1"/>
         <segue reference="u0b-ql-j32"/>
-        <segue reference="GfC-kN-bRm"/>
+        <segue reference="0Ib-jd-ti3"/>
         <segue reference="pbc-yn-Ln5"/>
     </inferredMetricsTieBreakers>
     <resources>

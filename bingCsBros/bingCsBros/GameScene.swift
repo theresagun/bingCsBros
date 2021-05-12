@@ -130,6 +130,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     NSLog("Out of lives")
                     self.view?.isPaused = true
                     self.score = makeFinalScore()
+                    ScoreboardDatabase.updateScore(newScore: Int64(self.score), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
                     self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
                     mc.lives = 100
                     mainChar.position.x = 10000
@@ -148,6 +149,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     NSLog("Out of lives")
                     self.view?.isPaused = true
                     self.score = makeFinalScore()
+                    ScoreboardDatabase.updateScore(newScore: Int64(self.score), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
                     self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
                     mc.lives = 100
                     mainChar.position.x = 10000
@@ -362,6 +364,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             NSLog("Out of screen")
             self.view?.isPaused = true
             self.score = makeFinalScore()
+            ScoreboardDatabase.updateScore(newScore: Int64(self.score), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
             mainChar.position.x = 10000
             //timeInterval = 0
