@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             //reset level and score
-            ScoreboardDatabase.updateLevel(newLevel: 3, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             score = scoreboard[0].value(forKey: "score") as! Int
             level = scoreboard[0].value(forKey: "level") as! Int
@@ -487,7 +487,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         obstacle3.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
 
         
-        let platform4 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 3, numQBoxes: 1)
+        let platform4 : [SKNode] = makePlatform(x: Int(self.frame.maxY) - 300 , y: 0, numBoxes: 3, numQBoxes: 0)
         for box in platform4{
             box.physicsBody?.categoryBitMask = collisionTypes.platform.rawValue
             box.physicsBody?.contactTestBitMask = 0
