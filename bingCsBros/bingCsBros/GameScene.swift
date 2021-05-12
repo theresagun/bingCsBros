@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             //reset level and score
-            ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLevel(newLevel: 3, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             score = scoreboard[0].value(forKey: "score") as! Int
             level = scoreboard[0].value(forKey: "level") as! Int
