@@ -50,7 +50,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else{
             //reset level and score
-            ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
+            ScoreboardDatabase.updateLevel(newLevel: 3, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             score = scoreboard[0].value(forKey: "score") as! Int
             level = scoreboard[0].value(forKey: "level") as! Int
@@ -129,6 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if(mc.lives < 0){
                     NSLog("Out of lives")
                     self.view?.isPaused = true
+                    self.score = makeFinalScore()
                     self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
                     mc.lives = 100
                     mainChar.position.x = 10000
@@ -146,6 +147,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if(mc.lives < 0){
                     NSLog("Out of lives")
                     self.view?.isPaused = true
+                    self.score = makeFinalScore()
                     self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
                     mc.lives = 100
                     mainChar.position.x = 10000
@@ -177,6 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.livesHelper = 3
             self.level += 1
             self.view?.isPaused = true
+            self.score = makeFinalScore()
             ScoreboardDatabase.updateLevel(newLevel: Int64(self.level), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateScore(newScore: Int64(self.score), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
             ScoreboardDatabase.updateLives(newLives: Int64(self.livesHelper!), scoreboardToUpdate: scoreboard[0] as! Scoreboard)
@@ -358,6 +361,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(mainChar.position.x < -400){
             NSLog("Out of screen")
             self.view?.isPaused = true
+            self.score = makeFinalScore()
             self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
             mainChar.position.x = 10000
             //timeInterval = 0
@@ -449,6 +453,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             box.physicsBody?.contactTestBitMask = 0
             box.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
             if((box as! PlatformBox).isQuestion){
+                print("\n\nHEREEEEEEEEEEEEEEEE\n\n")
                 (box as! PlatformBox).powerType = "SpeedBoost"
             }
         }
@@ -1509,9 +1514,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let questionBox = PlatformBox(x:q_x_coord,y:y,isQ:true)
         //self.addChild(questionBox)
         if numQBoxes != 0 {
+            print("should jave qbox...")
             platformBoxes.append(questionBox)
         }
        // print("PLATFORM BOXES: " + platformBoxes.description)
         return platformBoxes
+    }
+    func makeFinalScore() -> Int {
+        return self.score + (self.collected.count * 50)
     }
 }

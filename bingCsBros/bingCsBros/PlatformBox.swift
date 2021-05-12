@@ -14,14 +14,15 @@ class PlatformBox: SKSpriteNode {
     var powerType: String?
     
     init(x:Int, y:Int, isQ:Bool) {
-        isQuestion = isQ
-        if(isQuestion == true) {
-            img = "questionbox"
+        self.isQuestion = isQ
+        if(self.isQuestion) {
+            print("is q true")
+            self.img = "questionbox"
         }
         else {
-            img = "marioblock"
+            self.img = "marioblock"
         }
-        let texture = SKTexture(imageNamed: img)
+        let texture = SKTexture(imageNamed: self.img)
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
         self.position = CGPoint(x: x, y: y)
         self.size.height = 20
