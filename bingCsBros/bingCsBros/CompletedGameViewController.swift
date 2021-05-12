@@ -75,7 +75,7 @@ class CompletedGameViewController: UIViewController{
 
     func checkIfNewScoreOnLeaderboard() -> Bool{
         print("checking if score on leaderboard")
-//        let scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+        scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
         print("past scores string")
         var scores = scoresString!.components(separatedBy: ",")
         let scoresInt =  scores.map { Int($0)!}
@@ -147,6 +147,11 @@ class CompletedGameViewController: UIViewController{
         ScoreboardDatabase.updateLevel(newLevel: 1, scoreboardToUpdate: scoreboard![0] as! Scoreboard)
         ScoreboardDatabase.updateScore(newScore: 0, scoreboardToUpdate: scoreboard![0] as! Scoreboard)
         }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     /*
      /!/ MARK: - Navigation
 
