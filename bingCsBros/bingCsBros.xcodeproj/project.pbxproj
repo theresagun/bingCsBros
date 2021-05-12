@@ -28,9 +28,9 @@
 		347659DD2641A3E400DEA3CF /* aPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = 347659DA2641A3E400DEA3CF /* aPlus.png */; };
 		347659DE2641A3E400DEA3CF /* coffee.png in Resources */ = {isa = PBXBuildFile; fileRef = 347659DB2641A3E400DEA3CF /* coffee.png */; };
 		347CB750262736D200E9C464 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347CB74F262736D200E9C464 /* Character.swift */; };
+		34BB139D264ADA3F00566D46 /* text-1620746010384.png in Resources */ = {isa = PBXBuildFile; fileRef = 34BB139C264ADA3F00566D46 /* text-1620746010384.png */; };
 		34C7CBB4263C50AE009F571C /* WinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C7CBB3263C50AE009F571C /* WinViewController.swift */; };
 		34F6F8DE26404493009D5709 /* marioblock.png in Resources */ = {isa = PBXBuildFile; fileRef = 34F6F8DD26404493009D5709 /* marioblock.png */; };
-		4419900526443AEC00C9D26C /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4419900326443AEB00C9D26C /* DataModel.xcdatamodeld */; };
 		4419900B26443C4300C9D26C /* Scoreboard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419900926443C4300C9D26C /* Scoreboard+CoreDataClass.swift */; };
 		4419900C26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419900A26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift */; };
 		4419901126443E0500C9D26C /* ScoreboardDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4419901026443E0500C9D26C /* ScoreboardDatabase.swift */; };
@@ -38,6 +38,8 @@
 		446605FF2648A26400A219D0 /* Leaderboard+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446605FD2648A26400A219D0 /* Leaderboard+CoreDataClass.swift */; };
 		446606002648A26400A219D0 /* Leaderboard+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446605FE2648A26400A219D0 /* Leaderboard+CoreDataProperties.swift */; };
 		446606022648A2DC00A219D0 /* LeaderboardDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446606012648A2DC00A219D0 /* LeaderboardDatabase.swift */; };
+		44FD4588264B3D4300E0827B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44FD4587264B3D4300E0827B /* HomeViewController.swift */; };
+		44FD458E264B47EA00E0827B /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 44FD458C264B47EA00E0827B /* DataModel.xcdatamodeld */; };
 		7907592F2642E5E100766DA2 /* GameOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7907592E2642E5E000766DA2 /* GameOverViewController.swift */; };
 		796E9BDF263662A30084A130 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796E9BDE263662A30084A130 /* ViewController.swift */; };
 		79B3E4702629390100EE2316 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79B3E46F2629390100EE2316 /* Enemy.swift */; };
@@ -89,9 +91,9 @@
 		347659DA2641A3E400DEA3CF /* aPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = aPlus.png; sourceTree = "<group>"; };
 		347659DB2641A3E400DEA3CF /* coffee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coffee.png; sourceTree = "<group>"; };
 		347CB74F262736D200E9C464 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		34BB139C264ADA3F00566D46 /* text-1620746010384.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "text-1620746010384.png"; sourceTree = "<group>"; };
 		34C7CBB3263C50AE009F571C /* WinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WinViewController.swift; sourceTree = "<group>"; };
 		34F6F8DD26404493009D5709 /* marioblock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marioblock.png; sourceTree = "<group>"; };
-		4419900426443AEB00C9D26C /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		4419900926443C4300C9D26C /* Scoreboard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scoreboard+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4419900A26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scoreboard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4419901026443E0500C9D26C /* ScoreboardDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardDatabase.swift; sourceTree = "<group>"; };
@@ -99,6 +101,8 @@
 		446605FD2648A26400A219D0 /* Leaderboard+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard+CoreDataClass.swift"; sourceTree = "<group>"; };
 		446605FE2648A26400A219D0 /* Leaderboard+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Leaderboard+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		446606012648A2DC00A219D0 /* LeaderboardDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardDatabase.swift; sourceTree = "<group>"; };
+		44FD4587264B3D4300E0827B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		44FD458D264B47EA00E0827B /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		7907592E2642E5E000766DA2 /* GameOverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverViewController.swift; sourceTree = "<group>"; };
 		796E9BDE263662A30084A130 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		79B3E46F2629390100EE2316 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
@@ -162,6 +166,7 @@
 				446606012648A2DC00A219D0 /* LeaderboardDatabase.swift */,
 				344AE1A72624927D00EC6BAC /* GameScene.sks */,
 				4419901526444F7B00C9D26C /* CompletedGameViewController.swift */,
+				44FD4587264B3D4300E0827B /* HomeViewController.swift */,
 				344AE1A92624927D00EC6BAC /* Actions.sks */,
 				344AE1AB2624927D00EC6BAC /* GameScene.swift */,
 				344AE1AD2624927D00EC6BAC /* GameViewController.swift */,
@@ -173,6 +178,7 @@
 				79B3E47426293A4B00EE2316 /* Obstacles.swift */,
 				347CB74F262736D200E9C464 /* Character.swift */,
 				2C494D6B262F51B4008EC632 /* PlatformBox.swift */,
+				44FD458C264B47EA00E0827B /* DataModel.xcdatamodeld */,
 				2C494D5C262F460B008EC632 /* Collectable.swift */,
 				2C494D61262F4AF7008EC632 /* PowerItem.swift */,
 				344AE1B22624927E00EC6BAC /* Assets.xcassets */,
@@ -180,13 +186,13 @@
 				34030562262DC7B800BFBA5C /* bartle.jpeg */,
 				34030564262DC7B800BFBA5C /* jazzmans.jpeg */,
 				34F6F8DD26404493009D5709 /* marioblock.png */,
+				34BB139C264ADA3F00566D46 /* text-1620746010384.png */,
 				347659DA2641A3E400DEA3CF /* aPlus.png */,
 				347659DB2641A3E400DEA3CF /* coffee.png */,
 				347659D92641A3E400DEA3CF /* questionbox.png */,
 				34030563262DC7B800BFBA5C /* marketplace.jpeg */,
 				342BA80E263072BF00F12E0F /* stickFigure.png */,
 				344AE1B42624927E00EC6BAC /* Info.plist */,
-				4419900326443AEB00C9D26C /* DataModel.xcdatamodeld */,
 			);
 			path = bingCsBros;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 				347659DE2641A3E400DEA3CF /* coffee.png in Resources */,
 				347659DC2641A3E400DEA3CF /* questionbox.png in Resources */,
 				344AE1A82624927D00EC6BAC /* GameScene.sks in Resources */,
+				34BB139D264ADA3F00566D46 /* text-1620746010384.png in Resources */,
 				342BA80F263072BF00F12E0F /* stickFigure.png in Resources */,
 				344AE1B32624927E00EC6BAC /* Assets.xcassets in Resources */,
 				34F6F8DE26404493009D5709 /* marioblock.png in Resources */,
@@ -348,17 +355,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44FD4588264B3D4300E0827B /* HomeViewController.swift in Sources */,
 				344AE1AC2624927D00EC6BAC /* GameScene.swift in Sources */,
 				79B3E4702629390100EE2316 /* Enemy.swift in Sources */,
 				446605FF2648A26400A219D0 /* Leaderboard+CoreDataClass.swift in Sources */,
 				4419901126443E0500C9D26C /* ScoreboardDatabase.swift in Sources */,
 				344AE1AE2624927D00EC6BAC /* GameViewController.swift in Sources */,
-				4419900526443AEC00C9D26C /* DataModel.xcdatamodeld in Sources */,
 				4419900B26443C4300C9D26C /* Scoreboard+CoreDataClass.swift in Sources */,
 				4419900C26443C4300C9D26C /* Scoreboard+CoreDataProperties.swift in Sources */,
 				344AE1A62624927D00EC6BAC /* AppDelegate.swift in Sources */,
 				4419901626444F7C00C9D26C /* CompletedGameViewController.swift in Sources */,
 				796E9BDF263662A30084A130 /* ViewController.swift in Sources */,
+				44FD458E264B47EA00E0827B /* DataModel.xcdatamodeld in Sources */,
 				446606002648A26400A219D0 /* Leaderboard+CoreDataProperties.swift in Sources */,
 				446606022648A2DC00A219D0 /* LeaderboardDatabase.swift in Sources */,
 				79B3E47526293A4B00EE2316 /* Obstacles.swift in Sources */,
@@ -537,9 +545,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NA2Q6XHTH2;
+				DEVELOPMENT_TEAM = JWRYL7TNCU;
 				INFOPLIST_FILE = bingCsBros/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,9 +565,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = NA2Q6XHTH2;
+				DEVELOPMENT_TEAM = JWRYL7TNCU;
 				INFOPLIST_FILE = bingCsBros/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -697,12 +705,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		4419900326443AEB00C9D26C /* DataModel.xcdatamodeld */ = {
+		44FD458C264B47EA00E0827B /* DataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				4419900426443AEB00C9D26C /* DataModel.xcdatamodel */,
+				44FD458D264B47EA00E0827B /* DataModel.xcdatamodel */,
 			);
-			currentVersion = 4419900426443AEB00C9D26C /* DataModel.xcdatamodel */;
+			currentVersion = 44FD458D264B47EA00E0827B /* DataModel.xcdatamodel */;
 			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

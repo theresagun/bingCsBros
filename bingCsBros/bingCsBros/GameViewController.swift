@@ -17,6 +17,8 @@ class GameViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
+
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -49,12 +51,21 @@ class GameViewController: UIViewController {
             let win: WinViewController = segue.destination as! WinViewController
             win.score = self.score
             win.level = self.level
+            win.characterImage = self.characterImage
         }
         if(segue.identifier == "gameToLose"){
             let lose: GameOverViewController = segue.destination as! GameOverViewController
             //lose.score = self.score
             //lose.level = self.level
         }
+//        if(segue.identifier == "gameToCompleted"){
+//            let complete: GameOverViewController = segue.destination as! GameOverViewController
+//            complete.characterImage = self.characterImage
+//            //lose.score = self.score
+//            //lose.level = self.level
+//        }
+    
+        
     }
     
     

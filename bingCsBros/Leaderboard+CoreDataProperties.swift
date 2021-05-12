@@ -17,6 +17,8 @@ extension Leaderboard {
     }
 
     @NSManaged public var top5Scores: String
+    @NSManaged public var topNames: String
+
 
 }
 

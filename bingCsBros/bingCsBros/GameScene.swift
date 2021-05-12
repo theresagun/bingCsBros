@@ -65,6 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //this is hard coded for an iphone 11 in landscape mode with camera on right
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: CGRect(origin: CGPoint(x: self.frame.minX, y: self.frame.midY-165), size: self.frame.size))
         self.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue //ground acts as a obstacle
+//        self.physicsBody?.collisionBitMask = collisionTypes.enemy.rawValue
         
         
         
@@ -117,11 +118,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             else if(mc.hasImmunity){
                 en.removeFromParent()
             }
+            else if(en.typeOfEnemy == "thwomp" && mc.position.y <= en.position.y){
+                print("under thwomp")
+                //under th3weomp
+//                en.physicsBody?.isDynamic = false
+//                en.physicsBody?.affectedByGravity = false
+                en.upTime = true 
+                mc.lives -= 1
+                
+                if(mc.lives < 0){
+                    NSLog("Out of lives")
+                    self.view?.isPaused = true
+                    self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
+                    mc.lives = 100
+                    mainChar.position.x = 10000
+                    //timeInterval = 0
+                }
+                
+                self.livesHelper -= 1
+                
+                //TODO player is squished - jake?
+
+            }
             else{
                 mc.lives -= 1
                 
                 if(mc.lives < 0){
                     NSLog("Out of lives")
+                    self.view?.isPaused = true
                     self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
                     mc.lives = 100
                     mainChar.position.x = 10000
@@ -327,15 +351,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         //print("Hello from update")
-        if(mainChar==nil) {
-            print("mainchar not nil")
-        }
         var timeInterval = 0
 
         // Called before each frame is rendered
         //NSLog("%f", mainChar.position.x)
         if(mainChar.position.x < -400){
             NSLog("Out of screen")
+            self.view?.isPaused = true
             self.viewCtrl?.performSegue(withIdentifier: "gameToLose", sender: self)
             mainChar.position.x = 10000
             //timeInterval = 0
@@ -560,7 +582,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             intervalsUsed.append(Int(timeInterval))
             //add enemy and 2 platforms
             for node in platform1{
-                print("adding to not on screen list")
                 self.notOnScreen.append(node.description)
             }
             removePlatform()
@@ -809,6 +830,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemy1.zPosition = 1
             addChild(enemy1)
             
+            addChild(endFlag)
             
             //delete from
             
@@ -1017,10 +1039,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let obstacle1 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "desk", typeOfObstacles: "idk?", id: 3)
         obstacle1.physicsBody?.categoryBitMask = collisionTypes.obstacle.rawValue
         
-        let enemy3 = Enemy(x: Int(self.frame.maxY) - 300  , y:  50 , img: "weinschenk", typeOfEnemy: "thwomp", id: 3)
+        let enemy3 = Enemy(x: Int(self.frame.maxY) - 300  , y:  100 , img: "weinschenk", typeOfEnemy: "thwomp", id: 3)
         enemy3.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
         enemy3.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
-        enemy3.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        enemy3.physicsBody?.collisionBitMask = collisionTypes.player.rawValue | collisionTypes.obstacle.rawValue
         
         
         let obstacle2 = Obstacles(x: Int(self.frame.maxY) - 300, y: (Int(self.frame.minX) / 4) - 30, img: "chair", typeOfObstacles: "idk?", id: 3)
@@ -1075,10 +1097,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        let enemy6 = Enemy(x: Int(self.frame.maxY) - 300  , y:  50 , img: "umrigar", typeOfEnemy: "thwomp", id: 6)
+        let enemy6 = Enemy(x: Int(self.frame.maxY) - 300  , y:  100 , img: "umrigar", typeOfEnemy: "thwomp", id: 6)
         enemy6.physicsBody?.categoryBitMask = collisionTypes.enemy.rawValue
         enemy6.physicsBody?.contactTestBitMask = collisionTypes.player.rawValue
-        enemy6.physicsBody?.collisionBitMask = collisionTypes.player.rawValue
+        enemy6.physicsBody?.collisionBitMask = collisionTypes.player.rawValue | collisionTypes.obstacle.rawValue
         
         
        
@@ -1154,7 +1176,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             enemy1.zPosition = 1
             addChild(enemy1)
             
-            
+            addChild(endFlag)
         
         }
         if(Int(timeInterval) == 7 && intervalsUsed.contains(Int(timeInterval)) == false){
@@ -1231,7 +1253,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 addChild(node)
             }
             addChild(collectible1)
-            
             self.notOnScreen.append(enemy3.description)
             removeEnemy()
             self.notOnScreen.append(obstacle1.description)
@@ -1311,9 +1332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if(Int(timeInterval) == 72 && intervalsUsed.contains(Int(timeInterval)) == false){
             intervalsUsed.append(Int(timeInterval))
-            
-           print("adding obstacle 5")
-           
+                       
            self.notOnScreen.append(obstacle3.description)
            removeObstacle()
            addChild(obstacle5)
@@ -1324,7 +1343,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             intervalsUsed.append(Int(timeInterval))
             
            addChild(enemy8)
-            
             
         }
         

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class WinViewController: UIViewController {
+class WinViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet var currentScoreLabel: UILabel!
     @IBOutlet var currentLevelLabel: UILabel!
@@ -19,6 +19,7 @@ class WinViewController: UIViewController {
     var scoreDB: Int?
     var levelDB: Int?
     var scoreboard: [NSManagedObject]?
+    var characterImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +53,20 @@ class WinViewController: UIViewController {
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
 
-
-    /*
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "winToGame"){
+            let game: GameViewController = segue.destination as! GameViewController
+            game.characterImage = self.characterImage
+        }
     }
-    */
+    
 
 }
