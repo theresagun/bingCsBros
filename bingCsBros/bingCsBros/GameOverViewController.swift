@@ -39,6 +39,8 @@ class GameOverViewController: UIViewController {
         if(leaderboard!.count == 0 ){
             print("SAVING LEADERBOARD 1ST TIME")
             leaderboard = LeaderboardDatabase.saveFirstLeaderboard()
+            scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+            namesString = leaderboard?[0].value(forKey: "topNames") as! String
         }
         
         else {
@@ -78,6 +80,9 @@ class GameOverViewController: UIViewController {
         
         
         }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
     
     /*
     // MARK: - Navigation

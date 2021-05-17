@@ -45,6 +45,8 @@ class CompletedGameViewController: UIViewController{
         if(leaderboard!.count == 0 ){
             print("SAVING LEADERBOARD 1ST TIME")
             leaderboard = LeaderboardDatabase.saveFirstLeaderboard()
+            scoresString = leaderboard?[0].value(forKey: "top5Scores") as! String
+            namesString = leaderboard?[0].value(forKey: "topNames") as! String
         }
         
         else {
